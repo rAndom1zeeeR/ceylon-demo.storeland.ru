@@ -853,36 +853,30 @@ function priceFilter() {
 function quantity() {
   //Regulator Up копки + в карточке товара при добавлении в корзину
   $('.qty__plus').off('click').click(function(){
-    console.log('qty__plus')
     var 
       quantity = $(this).parent().find('.quantity, .cartqty'),
       currentVal = parseInt(quantity.val());
-      console.log(quantity)
-      console.log(currentVal)
     if (!isNaN(currentVal)){
       quantity.val(currentVal + 1);
       quantity.trigger('keyup');
-      quantity.trigger("change");
+      quantity.trigger('change');
     }
     return false;
   });
   //Regulator Down копки - в карточке товара при добавлении в корзину
   $('.qty__minus').off('click').click(function(){
-    console.log('qty__minus')
     var 
       quantity = $(this).parent().find('.quantity, .cartqty'),
       currentVal = parseInt(quantity.val());
-      console.log(quantity)
-      console.log(currentVal)
     if (!isNaN(currentVal)){
       quantity.val(currentVal - 1);
       quantity.trigger('keyup');
-      quantity.trigger("change");
+      quantity.trigger('change');
     }
     return false;
   });
   // Если вводят 0 то заменяем на 1
-  $('.qty .quantity, .cartqty').off('change').change(function(){
+  $('.qty .quantity, .cartqty').change(function(){
     if($(this).val() < 1){
       $(this).val(1);
     }
@@ -1302,9 +1296,9 @@ $('.add-compare').off('click').click(function(){
            .attr('data-action-is-add', newIsAddStatus);
           
           // Если рядом с ссылкой в виде круга есть текстовая надпись с описанием действия
-          if(aText.length) {
-            aText.text(aText.attr(isAdd == 1 ? 'data-action-text-del' : 'data-action-text-add'));
-          }
+          //if(aText.length) {
+          //  aText.text(aText.attr(isAdd == 1 ? 'data-action-text-del' : 'data-action-text-add'));
+          //}
           // Если есть функция, которая отображает сообщения пользователю
           if(typeof(Noty) == "function") {
             new Noty({
@@ -1478,9 +1472,9 @@ $('.add-favorites').off('click').click(function(){
            .attr('data-action-is-add', newIsAddStatus);
             
           // Если рядом с ссылкой в виде круга есть текстовая надпись с описанием действия
-          if(aText.length) {
-            aText.text(aText.attr(isAdd == 1 ? 'data-action-text-del' : 'data-action-text-add'));
-          }
+          //if(aText.length) {
+          //  aText.text(aText.attr(isAdd == 1 ? 'data-action-text-del' : 'data-action-text-add'));
+          //}
           // Если есть функция, которая отображает сообщения пользователю
           if(typeof(Noty) == "function") {
             new Noty({
@@ -2410,7 +2404,7 @@ function OrderScriptsSelect() {
 
 // Корзина
 function cartQuantity(){
-  $('.cartqty').change(function(){
+  $('.cartqty').change($.debounce(300, function(){
     var quantity = $(this);
     var qVal = $(this).val();
     if(qVal >= '1'){
@@ -2425,17 +2419,17 @@ function cartQuantity(){
           item = $('.cart__item[data-id="' + id + '"]');
           item.find('.cartPriceTotal span').html($(d).find('.cart__item[data-id="' + id + '"] .cartPriceTotal span').html());
           $('.cart__total').html($(d).find('.cart__total').html());
-          cVal = $(d).find('.cart__item[data-id="' + id + '"] .cartqty').val();
+          cVal = $(d).find('.cart__item[data-id="' + id + '"] .cartqty').attr('max');
           // Вызов функции быстрого заказа в корзине
           $('#startOrder').on('click', function() {
             startOrder();
             return false;
           });
-          if(qVal > cVal){
+          if(parseInt(qVal) > parseInt(cVal)){
             $('.cart__error').remove();
             $('.cartTable').before('<div class="cart__error warning">Вы пытаетесь положить в корзину товара больше, чем есть в наличии</div>');
             $('.cart__error').fadeIn(500).delay(2500).fadeOut(500, function(){$('.cartErr').remove();});
-            $('.quantity').removeAttr('readonly');
+            $('.cartqty').removeAttr('readonly');
           }
         }
       });
@@ -2443,7 +2437,7 @@ function cartQuantity(){
       $(this).val('1');
       $(this).trigger('change');
     }
-  });
+  }));
   quantity()
 }
 
@@ -3175,10 +3169,12 @@ function goodsModRest() {
     var value = $(this).data('value');
     if (value > 10) {
       $(this).html('Много');
-      $(this).css('opacity', '1')
+      $(this).css('opacity', '1');
+      $(this).parent().addClass('many');
     }else{
       $(this).html('Мало');
-      $(this).css('opacity', '1')
+      $(this).css('opacity', '1');
+      $(this).parent().addClass('few');
     }
   });
 }

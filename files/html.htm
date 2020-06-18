@@ -224,14 +224,17 @@
               <div class="addto__label dropside__open" data-open="cart">
                 <div class="cart__icon">
                   <i class="icon-cart"></i>
-                  <span class="icon__full"></span>
+                  <span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
+                  <!-- span class="icon__full"></span-->
                 </div>
                 <a href="{CART_URL}" title="Корзина">
                   <div class="cart__label">Корзина</div>
                   {% IF CART_COUNT_TOTAL > 0 %}
                   <div class="cart__full">
+                    <!--
                     <span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
                     <span class="cart__measure">товар{CART_COUNT_TOTAL| gen_word_end("","а","ов")}</span>
+                    -->
                     <span class="cart__totalSum totalSum">{CART_SUM_NOW_WITH_DISCOUNT | money_format }</span>
                   </div>
                   {% ENDIF %}
@@ -354,7 +357,6 @@
               <div class="banner__text">Разнообразные аксессуары для Ваших чайных и кофейных церемоний: посуда, сервизы и многое другое</div>
               <div class="banner__images">
                 <img src="{ASSETS_IMAGES_PATH}banner1.png?design=prime" class="el-1" />
-                <img src="{ASSETS_IMAGES_PATH}banner1bg.png?design=prime" class="el-2" />
               </div>
             </a>
             <a href="{CATALOG_URL}" class="banner__item" data-item="2">
@@ -362,7 +364,6 @@
               <div class="banner__text">Разнообразные аксессуары для Ваших чайных и кофейных церемоний: посуда, сервизы и многое другое</div>
               <div class="banner__images">
                 <img src="{ASSETS_IMAGES_PATH}banner2.png?design=prime" class="el-1" />
-                <img src="{ASSETS_IMAGES_PATH}banner2bg.png?design=prime" class="el-2" />
               </div>
             </a>
           </div>
@@ -372,7 +373,6 @@
               <div class="banner__text">Разнообразные аксессуары для Ваших чайных и кофейных церемоний: посуда, сервизы и многое другое</div>
               <div class="banner__images">
                 <img src="{ASSETS_IMAGES_PATH}banner3.png?design=prime" class="el-1" />
-                <img src="{ASSETS_IMAGES_PATH}banner3bg.png?design=prime" class="el-2" />
               </div>
             </a>
           </div>
@@ -382,8 +382,6 @@
               <div class="banner__text">Разнообразные аксессуары для Ваших чайных и кофейных церемоний: посуда, сервизы и многое другое</div>
               <div class="banner__images">
                 <img src="{ASSETS_IMAGES_PATH}banner4.png?design=prime" class="el-1" />
-                <img src="{ASSETS_IMAGES_PATH}banner4bg.png?design=prime" class="el-2" />
-                <img src="{ASSETS_IMAGES_PATH}banner4bg2.png?design=prime" class="el-3" />
               </div>
             </a>
             <a href="{CATALOG_URL}" class="banner__item" data-item="5">
@@ -391,7 +389,6 @@
               <div class="banner__text">Разнообразные аксессуары для Ваших чайных и кофейных церемоний: посуда, сервизы и многое другое</div>
               <div class="banner__images">
                 <img src="{ASSETS_IMAGES_PATH}banner5.png?design=prime" class="el-1" />
-                <img src="{ASSETS_IMAGES_PATH}banner5bg.png?design=prime" class="el-2" />
               </div>
             </a>
           </div>
