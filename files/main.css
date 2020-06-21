@@ -795,6 +795,7 @@ footer .overflowMenu.active {display: flex;}
 .products__grid .product__addto {position: relative;opacity: 1;top: auto;}
 .products__grid .product__shop {padding: 0 0 1rem;}
 .products__grid .add-notify {height: auto;}
+.products__grid .quickview {display: none;}
 }
 @media all and (max-width: 768px) {
 .products__grid .product__item {width: calc(50% - 2rem);}
@@ -1117,27 +1118,23 @@ section {margin: 2rem 0;}
 }
 
 /*** Быстрый просмотр ***/
+.productViewBlock.fancybox-content {max-width: 900px;}
 .productViewQuick .thumblist.show {display: none;}
-.productViewQuick .productView__imageBox {width: 100%;padding: 0 0 2rem 0;}
-.productViewQuick .productView__shop {width: 100%;}
-
+.productViewQuick .productView__addtoCart .quick {padding: 0 1rem;}
 /*** Выбор модификации ***/
 .productView.productViewMod {margin: 0 auto;width: 310px;}
 .productViewMod .productView__imageBox {display: none;}
+.productViewMod .productView__links {justify-content: flex-start;margin-top: 1rem;}
+.productViewMod .productView__links a:first-child {margin-left: 0;}
 .productViewMod .productView__shop {width: 100%;padding: 0;border: 0;}
 .productViewMod .productView__shop .productView__inner {border: 0;padding: 0;}
 .productViewMod .productView__text {display: none;}
 .productViewMod .productView__addto {margin-top: 0;}
 .productViewMod .productView__addtoCart .quick {display: none;}
-.fancybox-content .productView__box {justify-content: flex-start;}
-.fancybox-content .productView__articles {order: 1;}
-.fancybox-content .productView__available {order: 2;}
-.fancybox-content .productView__links {order: 3;width: 100%;margin-top: 1rem;}
-.fancybox-content .productView__links a {margin-left: 0;}
-.fancybox-content .productView__links a + a {margin-left: 2rem;}
+.fancybox-content .productView__box {justify-content: flex-start;padding: 0;}
 .fancybox-content .productView__tabs {display: none;}
 @media all and (max-width: 641px) {
-	.productView.productViewMod {width: auto;}
+.productView.productViewMod {width: auto;}
 }
 
 

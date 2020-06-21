@@ -569,7 +569,7 @@
                     rel="nofollow"
                   ></a>
                   {% ENDIF %}
-                  <a class="quickview" href="{index_page_goods.URL_MIN_PRICE_NOW}" title="Быстрый просмотр &laquo;{index_page_goods.NAME}&raquo;" rel="nofollow"></a>
+                  <a class="quickview" href="{index_page_sale_goods.URL_MIN_PRICE_NOW}" title="Быстрый просмотр &laquo;{index_page_sale_goods.NAME}&raquo;" rel="nofollow"></a>
                   <!-- Добавление товара в корзину -->
                   {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_sale_goods.MAX_REST_VALUE=0 %}
                     {% IF index_page_sale_goods.COUNT_MODIFICATION > 1 %}
@@ -753,7 +753,7 @@
                       rel="nofollow"
                     ></a>
                     {% ENDIF %}
-                    <a class="quickview" href="{index_page_goods.URL_MIN_PRICE_NOW}" title="Быстрый просмотр &laquo;{index_page_goods.NAME}&raquo;" rel="nofollow"></a>
+                    <a class="quickview" href="{index_page_favorites_goods.URL_MIN_PRICE_NOW}" title="Быстрый просмотр &laquo;{index_page_favorites_goods.NAME}&raquo;" rel="nofollow"></a>
                   </div>
                 </div>
                 <!-- Цена -->
