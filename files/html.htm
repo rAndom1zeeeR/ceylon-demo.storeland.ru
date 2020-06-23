@@ -149,36 +149,6 @@
                 <i class="icon-favorites"></i>
                 <span class="favorites__count" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
               </a>
-              <div id="addtoFavorites" class="addto__content {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %} dropside__content" data-open="favorites">
-                <div class="addto__title dropside__label"><i class="icon-favorites"></i><span>Избранное</span></div>
-                <div class="addto__goods favorites__goods">
-                  <div class="goods__items">
-                    {% FOR favorites_goods %}
-                    <div class="goods__item" data-id="{favorites_goods.ID}">
-                      <a href="{favorites_goods.URL}" title="{favorites_goods.NAME}" class="goods__image"><img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=prime{% ELSE %}{favorites_goods.IMAGE_ICON}{% ENDIF %}" class="goods-image-icon" /></a>
-                      <div class="goods__shop">
-                        <!-- Название -->
-                        <a href="{favorites_goods.URL}" class="goods__name" title="{favorites_goods.NAME}">{favorites_goods.NAME}</a>
-                        <!-- Цена -->
-                        <div class="goods__priceBox">
-                          <div class="goods__price">{favorites_goods.MIN_PRICE_NOW | money_format}</div>
-                          <!-- Удаление -->
-                          <a href="{FAVORITES_DELETE_URL}?id={favorites_goods.MIN_PRICE_NOW_ID}" data-goods-mod-id="{favorites_goods.MIN_PRICE_NOW_ID}" class="goods__remove remove x" title="Убрать товар из списка избранного" onclick="removeFromFavorites($(this))"></a>
-                        </div>
-                      </div>
-                    </div>
-                    {% ENDFOR %}
-                  </div>
-                  <div class="goods__empty">
-                    <div>Ваш список избранного пуст</div>
-                    <a data-fancybox-close href="{CATALOG_URL}" class="button button3 small" title="Продолжить покупки">Продолжить покупки</a>
-                  </div>
-                  <div class="goods__buttons">
-                    <a href="{FAVORITES_RESET_URL}" onclick="removeFromFavoritesAll($(this))" class="button button3 small removeAll" title="Очистить список Избранного"><span>Очистить</span></a>
-                    <a href="{FAVORITES_URL}" class="button small" title="Перейти к Избранному">В Избранное</a>
-                  </div>
-                </div>
-              </div>
             </div>
             <!-- Сравнение -->
             {% IFNOT MOD_LNAME = compare && SETTINGS_COMPARE_DISABLE=0 %}
@@ -187,36 +157,6 @@
                 <i class="icon-compare"></i>
                 <span class="compare__count" data-count="{COMPARE_GOODS_COUNT}">{COMPARE_GOODS_COUNT}</span>
               </a>
-              <div id="addtoCompare" class="addto__content {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %} dropside__content" data-open="compare">
-                <div class="addto__title dropside__label"><i class="icon-compare"></i><span>Сравнение</span></div>
-                <div class="addto__goods compare__goods">
-                  <div class="goods__items">
-                  {% FOR compare_goods %}
-                    <div class="goods__item" data-id="{compare_goods.ID}">
-                      <a href="{compare_goods.URL}" title="{compare_goods.NAME}" class="goods__image"><img src="{% IF compare_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=prime{% ELSE %}{compare_goods.IMAGE_ICON}{% ENDIF %}" class="goods-image-icon" /></a>
-                      <div class="goods__shop">
-                        <!-- Название -->
-                        <a href="{compare_goods.URL}" class="goods__name" title="{compare_goods.NAME}"><span>{compare_goods.NAME}</span></a>
-                        <!-- Цена -->
-                        <div class="goods__priceBox">
-                          <div class="goods__price">{compare_goods.MIN_PRICE_NOW | money_format}</div>
-                          <!-- Удаление -->
-                          <a href="{COMPARE_DELETE_URL}?id={compare_goods.MIN_PRICE_NOW_ID}" data-goods-mod-id="{compare_goods.MIN_PRICE_NOW_ID}" class="goods__remove remove x" title="Убрать товар из списка сравнения" onclick="removeFromCompare($(this))"></a>
-                        </div>
-                      </div>
-                    </div>
-                  {% ENDFOR %}
-                  </div>
-                  <div class="goods__empty">
-                    <div>Ваш список сравнения пуст</div>
-                    <a data-fancybox-close href="{CATALOG_URL}" class="button button3 small" title="Продолжить покупки">Продолжить покупки</a>
-                  </div>
-                  <div class="goods__buttons">
-                    <a href="{COMPARE_RESET_URL}" onclick="removeFromCompareAll($(this))" class="button button3 small removeAll" title="Очистить список сравнения"><span>Очистить</span></a>
-                    <a href="{COMPARE_URL}" class="button small" title="Перейти к Сравнению">В Сравнение</a>
-                  </div>
-                </div>
-              </div>
             </div>
             {% ENDIF %}
             <!-- Корзина -->
@@ -231,49 +171,10 @@
                   <div class="cart__label">Корзина</div>
                   {% IF CART_COUNT_TOTAL > 0 %}
                   <div class="cart__full">
-                    <!--
-                    <span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
-                    <span class="cart__measure">товар{CART_COUNT_TOTAL| gen_word_end("","а","ов")}</span>
-                    -->
                     <span class="cart__totalSum totalSum">{CART_SUM_NOW_WITH_DISCOUNT | money_format }</span>
                   </div>
                   {% ENDIF %}
                 </a>
-              </div>
-              <!-- Корзина -->
-              <div id="addtoCart" class="addto__content {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %} dropside__content" data-open="cart">
-                <div class="addto__title dropside__label"><i class="icon-cart"></i><span>Корзина</span></div>
-                <div class="addto__goods cart__goods">
-                  {% IFNOT cart_items_empty %}
-                  <div class="goods__items">
-                    {% FOR cart_items %}
-                    <div class="goods__item" data-id="{cart_items.GOODS_ID}">
-                      <a href="{cart_items.GOODS_URL}" title="{cart_items.GOODS_NAME}" class="goods__image"><img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=prime{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" class="goods-image-icon" /></a>
-                      <div class="goods__shop">
-                        <!-- Название -->
-                        <a href="{cart_items.GOODS_URL}" class="goods__name" title="{cart_items.GOODS_NAME}"><span>{cart_items.GOODS_NAME}</span></a>
-                        {% IFNOT cart_items.distinctive_properties_empty %}<div class="goods__mod">({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</div>{% ENDIF %}
-                        <!-- Цена -->
-                        <div class="goods__priceBox">
-                          <div class="goods__price" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
-                          <div class="goods__count">{cart_items.ORDER_LINE_QUANTITY} {cart_items.GOODS_MOD_MEASURE_NAME}.</div>
-                          <!-- Удаление -->
-                          <a href="{cart_items.ORDER_LINE_DELETE_URL}" data-count="{cart_items.ORDER_LINE_QUANTITY}" class="goods__remove remove x" title="Удалить позицию" onclick="removeFromCart($(this))"></a>
-                        </div>
-                      </div>
-                    </div>
-                    {% ENDFOR %}
-                  </div>
-                  {% ENDIF %}
-                  <div class="goods__empty">
-                    <div>В корзине пока ничего нет</div>
-                    <a href="{CATALOG_URL}" class="button button3 small" title="Продолжить покупки">Продолжить покупки</a>
-                  </div>
-                  <div class="goods__buttons">
-                    <a href="{CART_TRUNCATE_URL}" onclick="removeFromCartAll($(this))" class="button button3 small removeAll" title="Очистить корзину"><span>Очистить</span></a>
-                    <a href="{CART_URL}" class="button small" title="Перейти в Корзину">В Корзину</a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -572,6 +473,8 @@
                   <a class="quickview" href="{index_page_sale_goods.URL_MIN_PRICE_NOW}" title="Быстрый просмотр &laquo;{index_page_sale_goods.NAME}&raquo;" rel="nofollow"></a>
                   <!-- Добавление товара в корзину -->
                   {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_sale_goods.MAX_REST_VALUE=0 %}
+                    <a class="add-notify button" title="Уведомить" data-tooltipOFF="Уведомить" rel="nofollow" data-fancybox data-src="#fancybox__notify" href="javascript:;" data-name="{index_page_sale_goods.NAME}" data-art="{index_page_sale_goods.ART_NUMBER}"><span>Уведомить</span></a>
+                  {% ELSE %}
                     {% IF index_page_sale_goods.COUNT_MODIFICATION > 1 %}
                     <a class="quickViewMod" title="Добавить в корзину &laquo;{index_page_sale_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{index_page_sale_goods.URL_MIN_PRICE_NOW}" data-prodname="{index_page_sale_goods.NAME}"></a>
                     {% ELSE %}
@@ -1720,7 +1623,7 @@
               </a>
             </div>
             <!-- Подписаться -->
-            <div class="subscribe">
+            <div id="subscribe">
               <div class="footer__title">Подписывайтесь на наши новости</div>
               <form method="post" action="{CALLBACK_URL}" class="form__callback" enctype="multipart/form-data">
                 <input type="hidden" name="hash" value="{HASH}" />
@@ -1748,27 +1651,127 @@
         </div>
       </div>
     </footer>
-    
-    <!-- Модальные окна -->
-    <noindex>
+
     <div class="sidebar">
+      <div class="sidebar__item catalog">
+        <a href="{CATALOG_URL}" class="addto__label dropside__open" title="Каталог" data-open="catalog">
+          <i class="icon-more"></i>
+        </a>
+      </div>
+      <!-- Корзина -->
       <div class="sidebar__item cart {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %}">
         <a href="{CART_URL}" class="addto__label dropside__open" title="Корзина" data-open="cart">
           <i class="icon-cart"></i>
           <span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
         </a>
+        <div id="addtoCart" class="addto__content {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %} dropside__content" data-open="cart">
+          <div class="addto__title dropside__label"><i class="icon-cart"></i><span>Корзина</span></div>
+          <div class="addto__goods cart__goods">
+            {% IFNOT cart_items_empty %}
+            <div class="goods__items">
+              {% FOR cart_items %}
+              <div class="goods__item" data-id="{cart_items.GOODS_ID}">
+                <a href="{cart_items.GOODS_URL}" title="{cart_items.GOODS_NAME}" class="goods__image"><img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=prime{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" class="goods-image-icon" /></a>
+                <div class="goods__shop">
+                  <!-- Название -->
+                  <a href="{cart_items.GOODS_URL}" class="goods__name" title="{cart_items.GOODS_NAME}"><span>{cart_items.GOODS_NAME}</span></a>
+                  {% IFNOT cart_items.distinctive_properties_empty %}<div class="goods__mod">({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</div>{% ENDIF %}
+                  <!-- Цена -->
+                  <div class="goods__priceBox">
+                    <div class="goods__price {CURRENCY_CHAR_CODE}" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
+                    <div class="goods__count">{cart_items.ORDER_LINE_QUANTITY} {cart_items.GOODS_MOD_MEASURE_NAME}.</div>
+                    <!-- Удаление -->
+                    <a href="{cart_items.ORDER_LINE_DELETE_URL}" data-count="{cart_items.ORDER_LINE_QUANTITY}" class="goods__remove remove x" title="Удалить позицию" onclick="removeFromCart($(this))"></a>
+                  </div>
+                </div>
+              </div>
+              {% ENDFOR %}
+            </div>
+            {% ENDIF %}
+            <div class="goods__empty">
+              <div>В корзине пока ничего нет</div>
+              <a href="{CATALOG_URL}" class="button button3 small" title="Продолжить покупки">Продолжить покупки</a>
+            </div>
+            <div class="goods__buttons">
+              <a href="{CART_TRUNCATE_URL}" onclick="removeFromCartAll($(this))" class="button button3 small removeAll" title="Очистить корзину"><span>Очистить</span></a>
+              <a href="{CART_URL}" class="button small" title="Перейти в Корзину">В Корзину</a>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- Избранное -->
       <div class="sidebar__item favorites {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
         <a href="{FAVORITES_URL}" class="addto__label dropside__open" title="Избранное" data-open="favorites">
           <i class="icon-favorites"></i>
           <span class="favorites__count" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
         </a>
+        <div id="addtoFavorites" class="addto__content {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %} dropside__content" data-open="favorites">
+          <div class="addto__title dropside__label"><i class="icon-favorites"></i><span>Избранное</span></div>
+          <div class="addto__goods favorites__goods">
+            <div class="goods__items">
+              {% FOR favorites_goods %}
+              <div class="goods__item" data-id="{favorites_goods.ID}">
+                <a href="{favorites_goods.URL}" title="{favorites_goods.NAME}" class="goods__image"><img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=prime{% ELSE %}{favorites_goods.IMAGE_ICON}{% ENDIF %}" class="goods-image-icon" /></a>
+                <div class="goods__shop">
+                  <!-- Название -->
+                  <a href="{favorites_goods.URL}" class="goods__name" title="{favorites_goods.NAME}">{favorites_goods.NAME}</a>
+                  <!-- Цена -->
+                  <div class="goods__priceBox">
+                    <div class="goods__price {CURRENCY_CHAR_CODE}">{favorites_goods.MIN_PRICE_NOW | money_format}</div>
+                    <!-- Удаление -->
+                    <a href="{FAVORITES_DELETE_URL}?id={favorites_goods.MIN_PRICE_NOW_ID}" data-goods-mod-id="{favorites_goods.MIN_PRICE_NOW_ID}" class="goods__remove remove x" title="Убрать товар из списка избранного" onclick="removeFromFavorites($(this))"></a>
+                  </div>
+                </div>
+              </div>
+              {% ENDFOR %}
+            </div>
+            <div class="goods__empty">
+              <div>Ваш список избранного пуст</div>
+              <a data-fancybox-close href="{CATALOG_URL}" class="button button3 small" title="Продолжить покупки">Продолжить покупки</a>
+            </div>
+            <div class="goods__buttons">
+              <a href="{FAVORITES_RESET_URL}" onclick="removeFromFavoritesAll($(this))" class="button button3 small removeAll" title="Очистить список Избранного"><span>Очистить</span></a>
+              <a href="{FAVORITES_URL}" class="button small" title="Перейти к Избранному">В Избранное</a>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- Сравнение -->
       <div class="sidebar__item compare {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
         <a href="{COMPARE_URL}" class="addto__label dropside__open" title="Сравнение" data-open="compare">
           <i class="icon-compare"></i>
           <span class="compare__count" data-count="{COMPARE_GOODS_COUNT}">{COMPARE_GOODS_COUNT}</span>
         </a>
+        <div id="addtoCompare" class="addto__content {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %} dropside__content" data-open="compare">
+          <div class="addto__title dropside__label"><i class="icon-compare"></i><span>Сравнение</span></div>
+          <div class="addto__goods compare__goods">
+            <div class="goods__items">
+              {% FOR compare_goods %}
+              <div class="goods__item" data-id="{compare_goods.ID}">
+                <a href="{compare_goods.URL}" title="{compare_goods.NAME}" class="goods__image"><img src="{% IF compare_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=prime{% ELSE %}{compare_goods.IMAGE_ICON}{% ENDIF %}" class="goods-image-icon" /></a>
+                <div class="goods__shop">
+                  <!-- Название -->
+                  <a href="{compare_goods.URL}" class="goods__name" title="{compare_goods.NAME}"><span>{compare_goods.NAME}</span></a>
+                  <!-- Цена -->
+                  <div class="goods__priceBox">
+                    <div class="goods__price {CURRENCY_CHAR_CODE}">{compare_goods.MIN_PRICE_NOW | money_format}</div>
+                    <!-- Удаление -->
+                    <a href="{COMPARE_DELETE_URL}?id={compare_goods.MIN_PRICE_NOW_ID}" data-goods-mod-id="{compare_goods.MIN_PRICE_NOW_ID}" class="goods__remove remove x" title="Убрать товар из списка сравнения" onclick="removeFromCompare($(this))"></a>
+                  </div>
+                </div>
+              </div>
+              {% ENDFOR %}
+            </div>
+            <div class="goods__empty">
+              <div>Ваш список сравнения пуст</div>
+              <a data-fancybox-close href="{CATALOG_URL}" class="button button3 small" title="Продолжить покупки">Продолжить покупки</a>
+            </div>
+            <div class="goods__buttons">
+              <a href="{COMPARE_RESET_URL}" onclick="removeFromCompareAll($(this))" class="button button3 small removeAll" title="Очистить список сравнения"><span>Очистить</span></a>
+              <a href="{COMPARE_URL}" class="button small" title="Перейти к Сравнению">В Сравнение</a>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="sidebar__item toTop">
         <i class="icon-right-arrow"></i>
@@ -1787,9 +1790,12 @@
       </div>
       {% ENDIF %}
     </div>
+
+    <!-- Модальные окна -->
+    <noindex>
     <!-- Политика конфиденциальности в модальном окне -->
     <div id="fancybox__pp" class="modal" style="display:none">
-      <h2 class="modal__title"><span>Политика конфиденциальности</span></h2>
+      <h2 class="modal__title"><span>Политика приватности</span></h2>
       <div class="modal__content">
         <div>
           <h4 class="title">Общие положения</h4>

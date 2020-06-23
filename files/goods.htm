@@ -321,7 +321,7 @@
     {% ENDIF %}
     <!-- Условия доставки -->
     {% IFNOT goods_delivery_empty %}
-    <div class="productView__delivery {% IF GOODS_DESCRIPTION_LARGE=0 && goods_features_empty %}active{% ENDIF %}" data-tab="3">
+    <div class="productView__delivery {% IF GOODS_DESCRIPTION_LARGE=1 && goods_features_empty %}active{% ENDIF %}" data-tab="3">
       <div class="tabs__inner">
       {% FOR goods_delivery %}
       <div class="delivery__item">

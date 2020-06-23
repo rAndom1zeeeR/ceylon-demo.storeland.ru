@@ -842,9 +842,9 @@ function priceFilter() {
   
   // Активный фильтр цены
   if (priceInputMin.val() > priceFilterMinAvailable || priceInputMax.val() < priceFilterMaxAvailable) {
-    $('.filters-price').addClass('hasFilters');
+    $('.filters-price').addClass('actived');
   }else{
-    $('.filters-price').removeClass('hasFilters');
+    $('.filters-price').removeClass('actived');
   }
   
 }
@@ -2579,7 +2579,7 @@ function coupons() {
           cuponInput.parent().addClass('error');
           cuponInput.parent().removeClass('active');
           cuponInput.val("").attr("placeholder", "Купон неверен");
-          submitBtn.html('<i class="material-icons">send</i>');
+          submitBtn.html('<i class="icon-right-arrow"></i>');
           $('.total__coupons').hide();
           $('.total__discount').show();
         } else {
@@ -2603,7 +2603,7 @@ function coupons() {
       $('.total__discount').show();
       cuponInput.parent().removeClass('error');
       cuponInput.val("").attr("placeholder", "Введите купон");
-      submitBtn.html('<i class="material-icons">send</i>');
+      submitBtn.html('<i class="icon-right-arrow"></i>');
     }, 500);
   });
   // Отображение кнопки Сброс
@@ -2836,7 +2836,7 @@ function pdtSale() {
     navContainer: '.pdt__sale .owl-nav',
     navText: [ , ],
     dots: false,
-    autoHeight: true,
+    autoHeight: false,
     autoHeightClass: 'owl-height',
     autoplay: false,
     autoplayHoverPause: true,
@@ -2869,7 +2869,7 @@ function pdtNew() {
     navContainer: '.pdt__new .owl-nav',
     navText: [ , ],
     dots: false,
-    autoHeight: true,
+    autoHeight: false,
     autoHeightClass: 'owl-height',
     autoplay: false,
     autoplayHoverPause: true,
@@ -2902,7 +2902,7 @@ function pdtBest() {
     navContainer: '.pdt__best .owl-nav',
     navText: [ , ],
     dots: false,
-    autoHeight: true,
+    autoHeight: false,
     autoHeightClass: 'owl-height',
     autoplay: false,
     autoplayHoverPause: true,

@@ -60,10 +60,10 @@
   {% ENDIF %}
   
   <!-- Вывод товаров -->
-  <div class="products__container row">
+  <div class="products__container">
     <!-- Вывод товаров ТАБЛИЦЕЙ -->
     {% IF GOODS_VIEW_TYPE=1 %}
-    <div class="products__grid">
+    <div class="products__grid row">
       {% FOR goods %}
       <div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && goods.MAX_REST_VALUE=0 %}empty{% ENDIF %}" itemscope itemtype="https://schema.org/Product">
         <form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form-{goods.MIN_PRICE_NOW_ID} goodsListForm">
