@@ -748,7 +748,7 @@ footer .overflowMenu.active {display: flex;}
 .products__grid.owl-carousel .product__item {display: block;width: auto;margin: 0;}
 .products__grid.owl-carousel .product__item:nth-child(n) {margin: 0;}
 .products__grid.owl-carousel .product__image img {width: auto;max-width: 100%;}
-.products__grid.owl-carousel .owl-stage-outer {padding: 0 0 182px 0;}
+.products__grid.owl-carousel .owl-stage-outer {padding: 0 0 88px 0;}
 .products__grid.owl-carousel .owl-stage {display: flex;align-items: flex-start;}
 .products__grid.owl-carousel .owl-item {padding: 0 2px 2px;}
 @media all and (max-width: 991px) {
@@ -1392,7 +1392,7 @@ section {margin: 2rem 0;}
 /* Товар: Артикул, Наличие */
 .productView__box {width: 100%;padding-left: 50%;display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap;margin-bottom: 1rem;}
 .productView__articles {color: #ccd2c2;margin-right: 2rem;}
-.productView__available {}
+.productView__box .productView__inner {display: flex;align-items: center;flex-wrap: wrap;width: calc(100% - 112px);}
 /* Товар: Добавление в Избранное и Сравнение */
 .productView__links {display: flex;align-items: center;flex-wrap: wrap;flex-grow: 1;justify-content: flex-end;}
 .productView__links a {margin-left: 2rem;}
@@ -1442,8 +1442,7 @@ section {margin: 2rem 0;}
 .productView__addtoCart {justify-content: flex-start;}
 }
 @media all and (max-width: 481px) {
-.productView__links {width: 100%;justify-content: flex-start;margin-top: 1rem;}
-.productView__links a:first-child {margin-left: 0;}
+.productView__links {}
 .productView__price .price__old {margin-bottom: 0.5rem;}
 .productView__shop .productView__inner {padding: 1rem;}
 .productView__addtoCart .add-cart {width: 100%;}
@@ -1727,12 +1726,12 @@ div[col] > div {width: 100%;}
 .toTop i {display: block;transform: rotate(-90deg);}
 @media all and (max-width: 991px) {
 .sidebar {top: auto;bottom: 0;left: 0;width: 100%;display: flex;}
-.sidebar > div {flex-grow: 1;border-right: 1px solid #ccd2c2;text-align: center;padding: 15px 15px 10px 15px;}
+.sidebar > div {flex-grow: 1;border-right: 1px solid #ccd2c2;text-align: center;padding: 16px 0 10px 0;height: 60px;}
 .sidebar > div.toLeft, .sidebar > div.toRight {padding: 15px 5px 10px 5px;}
-.sidebar > div > a {position: relative;display: inline-block;}
-.sidebar [data-count] {position: absolute;right: -12px;top: -12px;}
+.sidebar > div > a {position: relative;display: flex;align-items: center;justify-content: center;}
+.sidebar [data-count] {position: absolute;right: calc(50% - 28px);top: -12px;}
 #footer {margin-bottom: 62px;}
-.dropside__content {height: calc(100vh - 65px);}
+.dropside__content {height: calc(100vh - 62px);}
 }
 
 
