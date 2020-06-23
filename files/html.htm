@@ -1659,6 +1659,7 @@
         </a>
       </div>
       <!-- Корзина -->
+      {% IFNOT MOD_LNAME = cart %}
       <div class="sidebar__item cart {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %}">
         <a href="{CART_URL}" class="addto__label dropside__open" title="Корзина" data-open="cart">
           <i class="icon-cart"></i>
@@ -1699,8 +1700,10 @@
           </div>
         </div>
       </div>
+      {% ENDIF %}
       <!-- Избранное -->
-      <div class="sidebar__item favorites {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
+      {% IFNOT MOD_LNAME = compare %}
+      <div class="sidebar__item favorites {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}" {% IF MOD_LNAME=user && ACT=favorites %}style="display: none"{% ENDIF %}>
         <a href="{FAVORITES_URL}" class="addto__label dropside__open" title="Избранное" data-open="favorites">
           <i class="icon-favorites"></i>
           <span class="favorites__count" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
@@ -1773,22 +1776,22 @@
           </div>
         </div>
       </div>
+      {% ENDIF %}
+      {% IF MOD_LNAME = compare %}
+      <div class="sidebar__item toLeft">
+        <a href="#">
+          <i class="icon-left-arrow"></i>
+        </a>
+      </div>
+      <div class="sidebar__item toRight">
+        <a href="#">
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div>
+      {% ENDIF %}
       <div class="sidebar__item toTop">
         <i class="icon-right-arrow"></i>
       </div>
-      {% IF MOD_LNAME = compare %}
-      <div id="toCompare">
-        <div class="toLeft">
-          <span><i class="material-icons">keyboard_arrow_left</i></span>
-        </div>
-        <div class="toRight">
-          <span><i class="material-icons">keyboard_arrow_right</i></span>
-        </div>
-        <div id="toTop">
-          <span><i class="material-icons">arrow_right_alt</i></span>
-        </div>
-      </div>
-      {% ENDIF %}
     </div>
 
     <!-- Модальные окна -->

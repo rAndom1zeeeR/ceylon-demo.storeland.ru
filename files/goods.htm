@@ -132,8 +132,7 @@
     </div>
     {% IFNOT goods_images_empty %}
     <div class="thumblist {% FOR goods_images %}{% IF goods_images.index > 2 %}show {% ENDIF %}{% ENDFOR %}">
-      <div class="thumblist__nav" data="prev"><i class="icon-right-arrow"></i></div>
-      <div class="thumblist__items">
+      <div class="thumblist__items owl-carousel">
         {% FOR goods_images %}
           <div class="thumblist__item" data-id="{goods_images.ID}" data-index="{goods_images.index}">
             <a href="{goods_images.LARGE}" data-fancybox="images">
@@ -142,7 +141,6 @@
           </div>
         {% ENDFOR %}
       </div>
-      <div class="thumblist__nav" data="next"><i class="icon-right-arrow"></i></div>
 		</div>
 		{% ENDIF %}
   </div>

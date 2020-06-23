@@ -531,33 +531,33 @@ function preload() {
 // Товар. Карточка товара
 function goodspage() {
   // Слайдер доп. изображений
-  $('.thumblist__items').slick({
-    vertical: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    verticalSwiping: true,
-    arrows: true,
-    draggable: true,
-    centerMode: false,
-    focusOnSelect: true,
-    prevArrow: $('.thumblist__nav[data="prev"]'),
-    nextArrow: $('.thumblist__nav[data="next"]'),
-    responsive: [
-      {
-        breakpoint: 641,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1
-        }
-      },
-      {
-        breakpoint: 481,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+  $('.thumblist .owl-carousel').owlCarousel({
+    items: 4,
+    margin: 16,
+    loop: false,
+    rewind: true,
+    lazyLoad: true,
+    dots: false,
+    nav: true,
+    navText: [ , ],
+    autoplay: false,
+    autoplayHoverPause: true,
+    smartSpeed: 500,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    responsiveClass: true,
+    responsiveRefreshRate: 100,
+    responsive: {
+      0:{items:2},
+      320:{items:2},
+      480:{items:3},
+      641:{items:4},
+      768:{items:5},
+      992:{items:3},
+      1200:{items:4},
+      1400:{items:4}
+    }
   });
   
   // Сопутствующие товары Слайдер
@@ -2577,6 +2577,7 @@ function coupons() {
         $('.cartSumTotalHide .num').text(newTotalSum);
         if (newTotalSum >= cartSum) {
           cuponInput.parent().addClass('error');
+          cuponInput.addClass('error');
           cuponInput.parent().removeClass('active');
           cuponInput.val("").attr("placeholder", "Купон неверен");
           submitBtn.html('<i class="icon-right-arrow"></i>');
@@ -2584,6 +2585,7 @@ function coupons() {
           $('.total__discount').show();
         } else {
           cuponInput.parent().removeClass('error');
+          cuponInput.removeClass('error');
           cuponInput.parent().addClass('active');
           submitBtn.html('<i class="material-icons">done</i>');
           $('.total__coupons').show();
@@ -2602,6 +2604,7 @@ function coupons() {
       $('.total__coupons').hide();
       $('.total__discount').show();
       cuponInput.parent().removeClass('error');
+      cuponInput.removeClass('error');
       cuponInput.val("").attr("placeholder", "Введите купон");
       submitBtn.html('<i class="icon-right-arrow"></i>');
     }, 500);
