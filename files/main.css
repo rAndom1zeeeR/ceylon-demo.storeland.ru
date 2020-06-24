@@ -943,8 +943,8 @@ footer .overflowMenu.active {display: flex;}
 /*** Заголовки ***/
 .block__title {display: flex;align-items: center;justify-content: space-between;margin-bottom: 2.5rem;}
 .block__title .title {font-size: 30px;font-weight: bold;text-transform: uppercase;font-family: 'Philosopher', sans-serif;}
-.block__nav .title {width: calc(100% - 260px);padding-right: 0.5rem;}
-.block__nav .owl-nav {width: 260px;position: relative;right: 0;bottom: auto;}
+.block__nav .title {width: calc(100% - 200px);padding-right: 0.5rem;}
+.block__nav .owl-nav {width: 200px;position: relative;right: 0;bottom: auto;}
 .block__nav .owl-prev:after {content: 'Назад';font-family: 'Nunito', sans-serif;}
 .block__nav .owl-next:before {content: 'Вперед';font-family: 'Nunito', sans-serif;}
 .block__nav .owl-next:after {content: '\e913';}

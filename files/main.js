@@ -2006,7 +2006,6 @@ function quickViewShow(href, atempt) {
         // Если больше 500 попыток, то уже прошло 25 секунд и похоже, что быстрый просмотр не подгрузится, отменяем информацию о том, что контент загружен
         if(atempt > 500) {
           delete document.quickviewPreload[href];
-          // TODO сделать вывод красивой таблички
           alert('Не удалось загрузить страницу товара. Пожалуйста, повторите попытку позже.');
           return true;
         }
@@ -2113,7 +2112,6 @@ function quickViewShowMod(href, atempt) {
         // Если больше 500 попыток, то уже прошло 25 секунд и похоже, что быстрый просмотр не подгрузится, отменяем информацию о том, что контент загружен
         if(atempt > 500) {
           delete document.quickviewPreload[href];
-          // TODO сделать вывод красивой таблички
           alert('Не удалось загрузить страницу товара. Пожалуйста, повторите попытку позже.');
           return true;
         }
@@ -2929,24 +2927,34 @@ function pdtBest() {
 
 // Функция показать больше для Вы смотрели на главной странице
 function recViewed() {
-  var pdtContent = $('#viewed');
-  var pdtButtons = pdtContent.find('.showAll');
-  var pdtCount = pdtContent.find('.product__item').length;
-  var pdtVisible = pdtContent.find('.product__item').filter(":visible").length;
-  if(pdtCount <= pdtVisible){ 
-    pdtButtons.hide();
-  }else{
-    pdtButtons.show();
-  }
-  pdtButtons.off('click').on('click',function(){
-    if($(this).hasClass('active')){
-      $(this).removeClass('active').find('span').text("Показать все");
-      pdtContent.find('.product__item').removeClass('show');
-      $('html, body').animate({scrollTop : pdtContent.offset().top }, 800);
-    }else{
-      $(this).addClass('active').find('span').text("Скрыть все");
-      pdtContent.find('.product__item').addClass('show');
-      $('html, body').animate({scrollTop : pdtContent.offset().top }, 800);
+  $('#viewed .owl-carousel').owlCarousel({
+    items: 4,
+    margin: 32,
+    loop: false,
+    rewind: true,
+    lazyLoad: true,
+    nav: true,
+    navContainer: '#viewed .owl-nav',
+    navText: [ , ],
+    dots: false,
+    autoHeight: false,
+    autoHeightClass: 'owl-height',
+    autoplay: false,
+    autoplayHoverPause: true,
+    smartSpeed: 500,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    responsiveClass: true,
+    responsiveRefreshRate: 100,
+    responsive: {
+      0:{items:1},
+      320:{items:1, margin: 16},
+      481:{items:2, margin: 16},
+      641:{items:2},
+      768:{items:3},
+      992:{items:3},
+      1200:{items:4}
     }
   });
 }
