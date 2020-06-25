@@ -472,15 +472,11 @@
                   {% ENDIF %}
                   <a class="quickview" href="{index_page_sale_goods.URL_MIN_PRICE_NOW}" title="Быстрый просмотр &laquo;{index_page_sale_goods.NAME}&raquo;" rel="nofollow"></a>
                   <!-- Добавление товара в корзину -->
-                  {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_sale_goods.MAX_REST_VALUE=0 %}
-                    <a class="add-notify button" title="Уведомить" data-tooltipOFF="Уведомить" rel="nofollow" data-fancybox data-src="#fancybox__notify" href="javascript:;" data-name="{index_page_sale_goods.NAME}" data-art="{index_page_sale_goods.ART_NUMBER}"><span>Уведомить</span></a>
+                  {% IF index_page_sale_goods.COUNT_MODIFICATION > 1 %}
+                  <a class="quickViewMod" title="Добавить в корзину &laquo;{index_page_sale_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{index_page_sale_goods.URL_MIN_PRICE_NOW}" data-prodname="{index_page_sale_goods.NAME}"></a>
                   {% ELSE %}
-                    {% IF index_page_sale_goods.COUNT_MODIFICATION > 1 %}
-                    <a class="quickViewMod" title="Добавить в корзину &laquo;{index_page_sale_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{index_page_sale_goods.URL_MIN_PRICE_NOW}" data-prodname="{index_page_sale_goods.NAME}"></a>
-                    {% ELSE %}
-                    <!--a class="add-cart quick" title="Быстро оформить заказ" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={index_page_sale_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={index_page_sale_goods.MIN_PRICE_NOW_ID}"></a-->
-                    <a class="add-cart" title="Добавить в корзину &laquo;{index_page_sale_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={index_page_sale_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={index_page_sale_goods.MIN_PRICE_NOW_ID}"></a>
-                    {% ENDIF %}
+                  <!--a class="add-cart quick" title="Быстро оформить заказ" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={index_page_sale_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={index_page_sale_goods.MIN_PRICE_NOW_ID}"></a-->
+                  <a class="add-cart" title="Добавить в корзину &laquo;{index_page_sale_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={index_page_sale_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={index_page_sale_goods.MIN_PRICE_NOW_ID}"></a>
                   {% ENDIF %}
                 </div>
                 <!-- Счетчик обратного отсчета. end дата окончания акции в формате Месяц:День:Год Часы:Минуты:Секунды -->
@@ -2068,8 +2064,8 @@
           {ANTISPAM_CODE}
           <!-- Для использования почты для уведомлений необходимо удалить блок с телефоном -->
           <div class="form__fields">
-            <label>Ваш телефон: <em>*</em></label>
-            <input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="off"  />
+            <input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Ваш телефон" autocomplete="off" />
+            <i class="icon-phone"></i>
           </div>
           <!-- Для использования почты для уведомлений необходимо удалить ниже style="display: none;" -->
           <div class="form__fields" style="display: none;">
