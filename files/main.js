@@ -1238,7 +1238,7 @@ $('.add-compare').off('click').click(function(){
       },
       success: function(data) {
         if(flag == 0){
-          $('.compare__goods .goods__items').prepend('<div class="goods__item" data-id="'+ pDataid +'"><a href="'+ pUrl +'" title="'+ pName +'" class="goods__image"><img src="'+ pImg +'" class="goods-image-icon" /></a><div class="goods__shop"><a href="'+ pUrl +'" class="goods__name" title="'+ pName +'"><span>'+ pName +'</span></a><div class="goods__priceBox"><div class="goods__price"><span title="'+ pDataPrice +' российских рублей"><span class="num">'+ pDataPrice +'</span> <span>р.</span></span></div><a href="'+ delUrl +'?id='+ pDataMod +'" data-goods-mod-id="'+ pDataMod +'" class="goods__remove remove x" title="Убрать товар из списка сравнения" onclick="removeFromCompare($(this))"></a></div></div></div>');
+          $('.compare__goods .goods__items').prepend('<div class="goods__item" data-id="'+ pDataid +'"><a href="'+ pUrl +'" title="'+ pName +'" class="goods__image"><img src="'+ pImg +'" class="goods-image-icon" /></a><div class="goods__shop"><a href="'+ pUrl +'" class="goods__name" title="'+ pName +'"><span>'+ pName +'</span></a><div class="goods__priceBox"><div class="goods__price"><span title="'+ pDataPrice +' российских рублей"><span class="num">'+ pDataPrice +'</span> <span>р.</span></span></div><a href="'+ delUrl +'?id='+ pDataMod +'" data-goods-mod-id="'+ pDataMod +'" class="goods__remove remove" title="Убрать товар из списка сравнения" onclick="removeFromCompare($(this))"></a></div></div></div>');
         }
         if('ok' == data.status) {
           if(isAdd == 1) {
@@ -1413,8 +1413,8 @@ $('.add-favorites').off('click').click(function(){
         'ajax_q': 1
       },
       success: function(data) {
-        if(flag == 0){   
-          $('.favorites__goods .goods__items').prepend('<div class="goods__item" data-id="'+ pDataid +'"><a href="'+ pUrl +'" title="'+ pName +'" class="goods__image"><img src="'+ pImg +'" class="goods-image-icon" /></a><div class="goods__shop"><a href="'+ pUrl +'" class="goods__name" title="'+ pName +'"><span>'+ pName +'</span></a><div class="goods__priceBox"><div class="goods__price"><span title="'+ pDataPrice +' российских рублей"><span class="num">'+ pDataPrice +'</span> <span>р.</span></span></div><a href="'+ delUrl +'?id='+ pDataMod +'" data-goods-mod-id="'+ pDataMod +'" class="goods__remove remove x" title="Убрать товар из списка избранного" onclick="removeFromFavorites($(this))"></a></div></div></div>');
+        if(flag == 0){
+          $('.favorites__goods .goods__items').prepend('<div class="goods__item" data-id="'+ pDataid +'"><a href="'+ pUrl +'" title="'+ pName +'" class="goods__image"><img src="'+ pImg +'" class="goods-image-icon" /></a><div class="goods__shop"><a href="'+ pUrl +'" class="goods__name" title="'+ pName +'"><span>'+ pName +'</span></a><div class="goods__priceBox"><div class="goods__price"><span title="'+ pDataPrice +' российских рублей"><span class="num">'+ pDataPrice +'</span> <span>р.</span></span></div><a href="'+ delUrl +'?id='+ pDataMod +'" data-goods-mod-id="'+ pDataMod +'" class="goods__remove remove" title="Убрать товар из списка избранного" onclick="removeFromFavorites($(this))"></a></div></div></div>');
         }
         if('ok' == data.status) {
           if(isAdd == 1) {
@@ -1687,8 +1687,9 @@ function removeFromCart(e){
   var del = e;  
   e.parent().parent().parent().fadeOut().remove();
   url = del.attr('href');
-  quantity = del.data('count');
-  $('.totalSum').animate({opacity: 0},500);
+  quantity = del.data('quantity');
+  $('.cartSum').animate({opacity: 0},500);
+  $('.addto__count').animate({opacity: 0},500);
   $.ajax({
     cache  : false,
 		url		 : url,
@@ -1697,8 +1698,11 @@ function removeFromCart(e){
       var oldQuantity = quantity;
       var newCount = oldCount - oldQuantity;
       $('.cart__count').attr('data-count', newCount).text(newCount);
-      $('.totalSum').animate({opacity: 1},500);
-      $('.totalSum').html($(d).find('.totalSum').html());
+      $('.cartSum').animate({opacity: 1},500);
+      $('.cartSum').html($(d).find('.cartSum').html());
+      $('.addto__count').animate({opacity: 1},500);
+      $('.addto__count').html($(d).find('.addto__count').html());
+      console.log($(d).find('.addto__count').html());
       var flag = 0; 
       if(newCount != 0){
       $('.cart__goods .goods__item').each(function(){
@@ -1718,6 +1722,7 @@ function removeFromCart(e){
         $('.cart__goods .goods__empty').show();
         $('.cart__goods .preloader').hide();
         $('.cart__full').hide();
+        $('.addto__count').hide();
       }
     }
   });
@@ -1745,6 +1750,7 @@ function removeFromCartAll(e){
       $('.cart__goods .goods__empty').show();
       $('.cart__goods .preloader').hide();
       $('.cart__full').hide();
+      $('.addto__count').hide();
 		}
   });
   }
@@ -3058,6 +3064,7 @@ function OpenMenu() {
     if($(this).hasClass('opened')){
       $('div, form, nav').removeClass('opened');
       $('.overflowMenu').removeClass('active');
+      $('#sidebar').removeClass('opened');
       setTimeout(function(){
         $('#overlay').removeClass('transparent');
       }, 600);
@@ -3068,17 +3075,30 @@ function OpenMenu() {
   $('.dropside__open').on('click', function(event){
     event.preventDefault();
     var value = $(this).data('open');
-    if ($('.dropside__content').hasClass('opened')){
+    if ($('.dropside__content[data-open="'+ value +'"]').hasClass('opened')){
       $('#overlay').removeClass('opened');
+      $(this).removeClass('opened');
+      $(this).parent().parent().removeClass('opened');
+      $('.dropside__open').removeClass('opened');
+      $('.dropside__content').removeClass('opened');
       $('.dropside__content[data-open="'+ value +'"]').removeClass('opened');
     }else{
       $('#overlay').addClass('opened');
+      $(this).addClass('opened');
+      $('.dropside__open').removeClass('opened');
+      $('.dropside__content').removeClass('opened');
+      $(this).parent().parent().addClass('opened');
       $('.dropside__content[data-open="'+ value +'"]').addClass('opened');
+      if (value == 'cart' || value == 'compare' || value == 'favorites') {
+        $('#sidebar').addClass('opened');
+      }
     }
   });
   // Закрытие меню
-  $('.dropside .dropside__label').on('click', function(event){
+  $('.dropside .dropside__label, .dropside__label .icon-cancel').on('click', function(event){
     $('.dropside__content').removeClass('opened');
+    $('.dropside__open').removeClass('opened');
+    $('#sidebar').removeClass('opened');
     $('#overlay').removeClass('opened');
   });
   

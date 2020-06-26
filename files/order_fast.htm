@@ -324,7 +324,10 @@
 </div>
 <!-- Блок для обновления данных корзины. Не виден пользователю -->
 <div style="display:none;" id="newCartCount">
-  <span class="count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
+  {CART_COUNT_TOTAL}
+</div>
+<div style="display:none;" id="newCartCountLabel">
+  {CART_COUNT_TOTAL} товар{CART_COUNT_TOTAL | gen_word_end("","а","ов")}
 </div>
 <div style="display:none;" id="newCartData">
   <div class="goods__items">
@@ -337,10 +340,10 @@
         {% IFNOT cart_items.distinctive_properties_empty %}<div class="goods__mod">({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</div>{% ENDIF %}
         <!-- Цена -->
         <div class="goods__priceBox">
-          <div class="goods__price" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
+          <div class="goods__price {CURRENCY_CHAR_CODE}" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
           <div class="goods__count">{cart_items.ORDER_LINE_QUANTITY} {cart_items.GOODS_MOD_MEASURE_NAME}.</div>
           <!-- Удаление -->
-          <a href="{cart_items.ORDER_LINE_DELETE_URL}" data-count="{cart_items.ORDER_LINE_QUANTITY}" class="goods__remove remove x" title="Удалить позицию" onclick="removeFromCart($(this))"></a>
+          <a href="{cart_items.ORDER_LINE_DELETE_URL}" data-quantity="{cart_items.ORDER_LINE_QUANTITY}" class="goods__remove remove" title="Удалить позицию" onclick="removeFromCart($(this))"></a>
         </div>
       </div>
     </div>
@@ -351,14 +354,21 @@
     <a href="{CATALOG_URL}" class="button button3 small" title="Продолжить покупки">Продолжить покупки</a>
   </div>
   <div class="goods__buttons">
-    <a href="{CART_TRUNCATE_URL}" onclick="removeFromCartAll($(this))" class="button button3 small removeAll" title="Очистить корзину"><span>Очистить</span></a>
-    <a href="{CART_URL}" class="button small" title="Перейти в Корзину">В Корзину</a>
+    <div>
+      <div>Итого:</div>
+      <div class="cartSum" data-value="{CART_SUM_NOW}">{CART_SUM_NOW | money_format}</div>
+    </div>
+    <div class="inner">
+      <a href="{CART_URL}" class="button" title="Перейти в Корзину">В Корзину</a>
+    </div>
   </div>
 </div>
 <!-- Обновление данных корзины -->
 <script>
 $('header .cart__label').html($('#newCartLabel').html());
+$('.addto__count').html($('#newCartCountLabel').html());
 $('.cart__count').html($('#newCartCount').html());
+$('.cart__count').attr('data-count', $('#newCartCount').html());
 $('.cart__goods').html($('#newCartData').html());
 $('.header__cart').addClass('hasItems');
 </script>

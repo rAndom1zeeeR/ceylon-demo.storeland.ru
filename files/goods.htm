@@ -1,6 +1,6 @@
 <!-- Форма карточки товара -->
-<div class="productViewBlock">
-<div class="productView {% IF GOODS_MOD_REST_VALUE=0 %}empty{% ENDIF %}" itemscope itemtype="https://schema.org/Product">
+<div class="productViewBlock" itemscope itemtype="https://schema.org/Product">
+<div class="productView {% IF GOODS_MOD_REST_VALUE=0 %}empty{% ENDIF %}">
   <div class="productView__box">
     <div class="productView__inner">
       <!-- Артикул -->
@@ -563,7 +563,7 @@
                 {% IF related_goods.MAX_REST_VALUE=0 %}
                   <span class="available__false"><label>Нет в наличии</label></span>
                 {% ELSE %}
-                  <span class="available__true tc"><span class="goodsModRestValue" data-value="{related_goods.MAX_REST_VALUE}">В наличии</span></span>
+                  <span class="available__true"><span class="goodsModRestValue" data-value="{related_goods.MAX_REST_VALUE}">В наличии</span></span>
                 {% ENDIF %}
                 </div>
                 <!-- Добавление в избранное и сравнение -->
@@ -701,12 +701,8 @@
                 {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && related_goods.MAX_REST_VALUE=0 %}
                   <a class="add-notify button" title="Уведомить" data-tooltipOFF="Уведомить" rel="nofollow" data-fancybox data-src="#fancybox__notify" href="javascript:;" data-name="{related_goods.NAME}" data-art="{related_goods.ART_NUMBER}"><span>Уведомить</span></a>
                 {% ELSE %}
-                  {% IF related_goods.COUNT_MODIFICATION > 1 %}
-                  <a class="quickViewMod button" title="Добавить в корзину &laquo;{related_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{related_goods.URL_MIN_PRICE_NOW}" data-prodname="{related_goods.NAME}"><span>Купить</span></a>
-                  {% ELSE %}
                   <!--a class="add-cart quick button" title="Быстро оформить заказ" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={related_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={related_goods.MIN_PRICE_NOW_ID}"><span>Купить</span></a-->
                   <a class="add-cart button" title="Добавить в корзину &laquo;{related_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={related_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={related_goods.MIN_PRICE_NOW_ID}"><span>Купить</span></a>
-                  {% ENDIF %}
                 {% ENDIF %}
               </div>
             </div>
@@ -764,7 +760,7 @@
                 {% IF related_views_goods.MAX_REST_VALUE=0 %}
                   <span class="available__false"><label>Нет в наличии</label></span>
                 {% ELSE %}
-                  <span class="available__true tc"><span class="goodsModRestValue" data-value="{related_views_goods.MAX_REST_VALUE}">В наличии</span></span>
+                  <span class="available__true"><span class="goodsModRestValue" data-value="{related_views_goods.MAX_REST_VALUE}">В наличии</span></span>
                 {% ENDIF %}
                 </div>
                 <!-- Добавление в избранное и сравнение -->
@@ -902,12 +898,8 @@
                 {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && related_views_goods.MAX_REST_VALUE=0 %}
                   <a class="add-notify button" title="Уведомить" data-tooltipOFF="Уведомить" rel="nofollow" data-fancybox data-src="#fancybox__notify" href="javascript:;" data-name="{related_views_goods.NAME}" data-art="{related_views_goods.ART_NUMBER}"><span>Уведомить</span></a>
                 {% ELSE %}
-                  {% IF related_views_goods.COUNT_MODIFICATION > 1 %}
-                  <a class="quickViewMod button" title="Добавить в корзину &laquo;{related_views_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{related_views_goods.URL_MIN_PRICE_NOW}" data-prodname="{related_views_goods.NAME}"><span>Купить</span></a>
-                  {% ELSE %}
                   <!--a class="add-cart quick button" title="Быстро оформить заказ" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={related_views_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={related_views_goods.MIN_PRICE_NOW_ID}"><span>Купить</span></a-->
                   <a class="add-cart button" title="Добавить в корзину &laquo;{related_views_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={related_views_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={related_views_goods.MIN_PRICE_NOW_ID}"><span>Купить</span></a>
-                  {% ENDIF %}
                 {% ENDIF %}
               </div>
             </div>

@@ -51,7 +51,7 @@
   <div id="filters" class="dropside {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
     <div class="dropside__content" data-breakpoint="991" data-open="filters">
     <form action="" method="get" class="form__filters">
-      <div class="filters__icon dropside__label"><i class="icon-settings"></i><span>Фильтр</span></div>
+      <div class="filters__icon dropside__label"><i class="icon-settings"></i><span>Фильтр</span><i class="icon-cancel"></i></div>
       <!-- Если есть возможность фильтрации товаров по ценам -->
       {% IF SHOW_GOODS_PRICE_FILTERS %}
       <div class="filter__list collapsible filters-price">
@@ -202,7 +202,7 @@
               {% IF goods.MAX_REST_VALUE=0 %}
                 <span class="available__false"><label>Нет в наличии</label></span>
               {% ELSE %}
-                <span class="available__true tc"><span class="goodsModRestValue" data-value="{goods.MAX_REST_VALUE}">В наличии</span></span>
+                <span class="available__true"><span class="goodsModRestValue" data-value="{goods.MAX_REST_VALUE}">В наличии</span></span>
               {% ENDIF %}
               </div>
               <!-- Добавление в избранное и сравнение -->
@@ -395,7 +395,7 @@
             {% IF goods.MAX_REST_VALUE=0 %}
               <span class="available__false"><label>Нет в наличии</label></span>
             {% ELSE %}
-              <span class="available__true tc"><span class="goodsModRestValue" data-value="{goods.MAX_REST_VALUE}">В наличии</span></span>
+              <span class="available__true"><span class="goodsModRestValue" data-value="{goods.MAX_REST_VALUE}">В наличии</span></span>
             {% ENDIF %}
             </div>
             <!-- Название товара -->
