@@ -34,17 +34,6 @@
     {% ENDFOR %}
   </div>
   {% ENDIF %}
-  <!-- Если нет товаров, выводим сообщение пользователю -->
-  {% IF nested_categories_list_empty && goods_empty %}
-    {% IF goods_filters_empty %}
-      <p class="attention">Нет товаров в выбранной категории</p>
-      <p><a href="{CATALOG_URL}" class="button button3" title="Вернуться в каталог">Вернуться в каталог</a></p>
-    {% ELSE %}
-      <p class="attention">Нет товаров для выбранных условий</p>
-      <p><a href="{PAGE_CANONICAL}" class="button button3" title="Очистить фильры">Очистить фильры</a></p>
-    {% ENDIF %}
-  {% ENDIF %}
-  <!-- /Если нет товаров, выводим сообщение пользователю -->
   
   <!-- Если в тарифном плане подключен модуль фильтров по товарам -->
   {% IF SHOW_GOODS_FILTERS || SHOW_GOODS_PRICE_FILTERS %}
@@ -112,9 +101,21 @@
     <div class="filters__icon dropside__open" data-open="filters"><i class="icon-settings"></i><span>Фильтры</span></div>
   </div>
   {% ENDIF %}
-  
+
+  <!-- Если нет товаров, выводим сообщение пользователю -->
+  {% IF nested_categories_list_empty && goods_empty %}
+    {% IF goods_filters_empty %}
+      <p class="attention">Нет товаров в выбранной категории</p>
+      <p><a href="{CATALOG_URL}" class="button button3" title="Вернуться в каталог">Вернуться в каталог</a></p>
+    {% ELSE %}
+      <p class="attention">Нет товаров для выбранных условий</p>
+      <p><a href="{PAGE_CANONICAL}" class="button button3" title="Очистить фильры">Очистить фильры</a></p>
+    {% ENDIF %}
+  {% ENDIF %}
+  <!-- /Если нет товаров, выводим сообщение пользователю -->
+
   <!-- Если нет товаров, либо у пользователя не сработало javascript ограничение на фильтре по товарам и так получилось что их не нашлось, отобразим блок изменяющий отображение данных выдачи товаров -->
-  {% IFNOT IS_FULL_CATALOG && goods_empty=0 || goods_filters_empty=0 %}
+  {% IFNOT IS_FULL_CATALOG && goods_empty=0 || goods_filters_empty=1 %}
   <!-- Верхний блок, изменяющий отображение данных выдачи товаров -->
   <div class="toolbar">
     <noindex>

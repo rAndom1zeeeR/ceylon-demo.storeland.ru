@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?cean7a');
-  src:  url('fonts/icomoon.eot?cean7a#iefix') format('embedded-opentype'),
-  url('fonts/icomoon.ttf?cean7a') format('truetype'),
-  url('fonts/icomoon.woff?cean7a') format('woff'),
-  url('fonts/icomoon.svg?cean7a#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?nkkzod');
+  src:  url('fonts/icomoon.eot?nkkzod#iefix') format('embedded-opentype'),
+  url('fonts/icomoon.ttf?nkkzod') format('truetype'),
+  url('fonts/icomoon.woff?nkkzod') format('woff'),
+  url('fonts/icomoon.svg?nkkzod#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-mastercard:before {
+  content: "\e92e";
+}
+.icon-qiwi:before {
+  content: "\e92f";
+}
+.icon-sberbank:before {
+  content: "\e930";
+}
+.icon-visa:before {
+  content: "\e931";
+}
+.icon-webmoney:before {
+  content: "\e932";
+}
+.icon-yandex:before {
+  content: "\e933";
+}
 .icon-ruble:before {
   content: "\e92d";
 }
