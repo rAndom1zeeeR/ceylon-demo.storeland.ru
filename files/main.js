@@ -1209,8 +1209,8 @@ $('.add-compare').off('click').click(function(){
   var atlS = $(this).closest('.product__shop');
   var flag = 0;
   $('.compare__goods .goods__item').each(function(){
-    if($(this).find('a.dataid').text() == pDataid){  
-    flag = 1;
+    if($(this).attr('data-id') == pDataid){
+      flag = 1;
     }
     if(flag == 1){
       $(this).remove();
@@ -1218,8 +1218,6 @@ $('.add-compare').off('click').click(function(){
     }
     return flag;
   });
-  $('.compare__goods .goods__empty').hide();
-  $('.compare__goods .goods__buttons').css('display', 'flex');
   
   // Если в ссылке присутствует идентификатор, который мы можем узнать только вытащив его с текущей страницы
   if( /GET_GOODS_MOD_ID_FROM_PAGE/.test(requestUrl)) {
@@ -1384,9 +1382,9 @@ $('.add-favorites').off('click').click(function(){
   var atl = $(this).closest('.product__links');
   var atlS = $(this).closest('.product__shop');
   var flag = 0;
-  $('.favorites__goods .goods__item').each(function(){       
-    if($(this).find('a.dataid').text() == pDataid){  
-    flag = 1;
+  $('.favorites__goods .goods__item').each(function(){
+    if($(this).attr('data-id') == pDataid){
+      flag = 1;
     }
     if(flag == 1){
       $(this).remove();
@@ -1394,8 +1392,6 @@ $('.add-favorites').off('click').click(function(){
     }
     return flag;
   });
-  $('.favorites__goods .goods__empty').hide();
-  $('.favorites__goods .goods__buttons').css('display', 'flex');
   
   // Если в ссылке присутствует идентификатор, который мы можем узнать только вытащив его с текущей страницы
   if( /GET_GOODS_MOD_ID_FROM_PAGE/.test(requestUrl)) {
@@ -1867,6 +1863,10 @@ function validNameFancy(){
   }else{
     name.addClass('error');
     name.attr('placeholder','Вы не ввели Имя');
+    setTimeout(function(){
+      name.removeClass('error');
+      name.attr('placeholder','Введите Имя');
+    }, 5000);
     return false;
   } 
 }
@@ -1881,6 +1881,10 @@ function validPhoneFancy(){
   else{
     tel.addClass('error');
     tel.attr('placeholder','Вы ввели неверный номер');
+    setTimeout(function(){
+      tel.removeClass('error');
+      tel.attr('placeholder','Введите номер');
+    }, 5000);
     return false;
   }
 }
