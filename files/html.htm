@@ -1840,8 +1840,8 @@
                 <!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
                 {ANTISPAM_CODE}
                 <!-- Скрытые поля -->
-                <input class="form__input form__person" type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="Подписаться" placeholder="Ваше имя" autocomplete="off" />
-                <input class="form__input form__phone" type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="Подписаться" placeholder="Ваш телефон" autocomplete="off" />
+                <input class="form__input" type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="Подписаться" placeholder="Ваше имя" autocomplete="off" />
+                <input class="form__input" type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="Подписаться" placeholder="Ваш телефон" autocomplete="off" />
                 <div class="form__field">
                   <input class="form__input form__email" type="email" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_EMAIL}]" value="{FORM_CALLBACK_EMAIL}" placeholder="email@email.ru *" autocomplete="off"  />
                   <button type="submit" title="Отправить" class="form__button button"><i class="icon-right-arrow"></i></button>
@@ -2131,12 +2131,6 @@
   <!-- Если отключен JS -->
   <script type="text/javascript">$(document).ready(function () { $('body').removeClass('nojs'); });</script>
   <!-- ВНИМАНИЕ! Если Вы удалите код ниже, то это повлияет на работу вашего сайта. Пожалуйста ничего не удаляйте без консультации у специалистов. -->
-  {% IF MOD_LNAME = goods %}
-  <link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}slick.css?design=kakadu" />
-  <link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}slick-theme.css?design=kakadu" />
-  <script type="text/javascript" src="{ASSETS_JS_PATH}slick.js?design=kakadu"></script>
-  <script type="text/javascript" src="{ASSETS_JS_PATH}slick.min.js?design=kakadu"></script>
-  {% ENDIF %}
   <script type="text/javascript">
     // Запуск основных скриптов для страницы "Товар"
     {% IF MOD_LNAME = goods %}

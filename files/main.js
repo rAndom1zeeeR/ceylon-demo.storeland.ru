@@ -952,7 +952,7 @@ function goodsModification() {
   updateVisibility (1);
 
   // Изменение цены товара при изменении у товара свойства для модификации
-  goodsDataProperties.each(function(){
+  goodsDataProperties.each(function(y){
     $(this).change(function(){
       var slug = getSlugFromGoodsDataFormModificationsProperties(goodsDataProperties),
         modificationBlock             = $('.goodsModificationsList[rel="'+slug+'"]'),
@@ -977,15 +977,11 @@ function goodsModification() {
         goodsAvailable                = goodsModView.find('.productView__available'),
         goodsAvailableTrue            = goodsAvailable.find('.available__true'),
         goodsAvailableFalse           = goodsAvailable.find('.available__false'),
-        goodsAvailableAddCart         = $('.add-cart'),
-        goodsAvailableAddCartQuick    = $('.add-cart.quick'),
         goodsAvailableQty             = $('.productView__qty'),
         goodsArtNumberBlock           = $('.productView__articles'),
         goodsArtNumber                = goodsArtNumberBlock.find('.goodsModArtNumber'),
         goodsModDescriptionBlock      = $('.goodsModDescription'),
-        goodsModRestValue             = goodsModView.find('.goodsModRestValue'),
-        goodsModAddto                 = $('.productView__addto'),
-        goodsModNotify                = $('.productView__notify');
+        goodsModRestValue             = goodsModView.find('.goodsModRestValue');
        
       // Изменяем данные товара для выбранных параметров. Если нашлась выбранная модификация
       if(modificationBlock.length) {
@@ -1072,6 +1068,8 @@ function goodsModification() {
         sendError('no modification by slug '+slug);
         alert('К сожалению сейчас не получается подобрать модификацию соответствующую выбранным параметрам.');
       }
+      // Обновляем возможность выбора другой модификации для текущих значений свойств модификации товара.
+      updateVisibility(y);
     });
   });
 }
