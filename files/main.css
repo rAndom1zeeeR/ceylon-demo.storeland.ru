@@ -1226,7 +1226,6 @@ section {margin: 2rem 0;}
 }
 
 
-
 /*** Формы ***/
 .form__fields {position: relative;margin-bottom: 2rem;display: -ms-flexbox;display: -webkit-flex;display: flex;-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;-ms-flex-align: center;-webkit-align-items: center;-webkit-box-align: center;align-items: center;}
 .form__fields:last-child {margin-bottom: 0;}
