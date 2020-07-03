@@ -692,20 +692,6 @@ function catalogpage() {
     $(this)[0].form.submit();
   });
   
-  // Открытие каталога с сохранением вложенности
-  $('.catalog__item .open').click(function(event){
-  event.preventDefault();
-    if ($(this).closest('.parent').hasClass('opened')) {
-      $(this).parent().next('.sub').slideUp(600);
-      $(this).closest('.parent').removeClass('opened');
-      $(this).closest('.open').removeClass('opened');
-    } else {
-      $(this).parent().next('.sub').slideDown(600);
-      $(this).closest('.parent').addClass('opened');
-      $(this).closest('.open').addClass('opened');
-    }
-  });
-  
   // Открытие сортировки и показать по
   $('.selectBox .select .label').on('click',function(){
     if($(this).parent().parent().hasClass('clicked')){
@@ -2719,53 +2705,6 @@ function mainnavFooter(){
   }
 }
 
-// Дополнительные пункты меню в шапке Перенос пунктов меню
-function mainnavCatalog(){
-  var mainnav = $('#catalog .catalog__menu');
-  var overMenuExist = mainnav.find('.overflowMenu li').length;
-  if(overMenuExist){
-    mainnav.find('.overflowMenu li').removeClass('catalog__replaced');
-    mainnav.find('.catalog__more').remove();
-    mainnav.find('.overflowMenu li').each(function(){
-      mainnav.find('.catalog__items').append($(this));
-    });
-  }
-  menuWidth = mainnav.width();
-  menuCount = mainnav.find('.catalog__items > div[data-level="0"]').length + 1;
-  var nextCheck = 0;
-  var CurrentWidthCounter = 0;
-  for(var i=1; i < menuCount;  i++){
-    currentWidth = parseInt(Math.ceil(mainnav.find('.catalog__items > div[data-level="0"]:nth-child('+i+')').width())) + 30;
-    nextCheck += currentWidth;
-    if(nextCheck > menuWidth){
-      var a = i;
-      for(a;a < menuCount;a++){
-        mainnav.find('.catalog__items > div[data-level="0"]:nth-child('+ a +')').addClass('catalog__replaced');
-      }
-      mainnav.find('.catalog__replaced').each(function(){
-        mainnav.find('.overflowMenu').append($(this));
-      });
-      mainnav.find('.catalog__items').append('<div class="catalog__item catalog__more"><a class="catalog__link"><span class="icon-more"></span></a></div>');
-      menuMorePosition = parseInt(mainnav.find('.catalog__more').position().left);
-      mainnav.find('.catalog__more').on('click',function(){
-        mainnav.find('.overflowMenu').hasClass('active') ? mainnav.find('.overflowMenu').removeClass('active') : mainnav.find('.overflowMenu').addClass('active');
-        mainnav.find('.catalog__items').hasClass('active') ? mainnav.find('.catalog__items').removeClass('active') : mainnav.find('.catalog__items').addClass('active');
-      });
-      $(function($){
-        $(document).mouseup(function (e){ 
-          var div = mainnav.find('.overflowMenu.active'); 
-          var btn = mainnav.find('.catalog__more');
-          if (!div.is(e.target) && div.has(e.target).length === 0 && !btn.is(e.target)) {
-            div.removeClass('active');
-            mainnav.find('.catalog__items').removeClass('active');
-          }
-        });
-      });
-      return false;
-    }
-  }
-}
-
 // Функция показать больше для Акции на главной странице
 function pdtSales() {
   $('.pdt__sales .owl-carousel').owlCarousel({
@@ -3103,16 +3042,6 @@ function OpenMenu() {
     $('#sidebar').removeClass('opened');
     $('#overlay').removeClass('opened');
   });
-  
-  
-  
-  // Имитация Открытие меню в подвале
-  $('#mobmenu2 .mobnav__catalog .addto__label').on('click', function(event){
-    $('#mobmenu .mobnav__catalog .addto__label').click();
-  });
-  $('#mobmenu2 .mobnav__menu .addto__label').on('click', function(event){
-    $('#mobmenu .mobnav__menu .addto__label').click();
-  });
 
   // Открытие элементов
   $('.dropdown .dropdown__click').on('click', function(event){
@@ -3123,6 +3052,20 @@ function OpenMenu() {
     }else{
       $(this).parents('.dropdown').addClass('opened');
       $('#overlay').addClass('opened transparent');
+    }
+  });
+
+  // Открытие каталога с сохранением вложенности
+  $('.catalog__item .open').click(function(event){
+    event.preventDefault();
+    if ($(this).closest('.parent').hasClass('opened')) {
+      $(this).parent().next('.sub').slideUp(600);
+      $(this).closest('.parent').removeClass('opened');
+      $(this).closest('.open').removeClass('opened');
+    } else {
+      $(this).parent().next('.sub').slideDown(600);
+      $(this).closest('.parent').addClass('opened');
+      $(this).closest('.open').addClass('opened');
     }
   });
   
@@ -3142,58 +3085,8 @@ function OpenMenuCatalog() {
       $('#overlay').addClass('opened transparent');
     }
   });
-  // Добавление класса hover для отображения подкатегорий 0 уровня
-  var delay = 250, setTimeoutConst;
-  $('#menu .catalog__item[data-level="0"]').hover(function(event) {
-    var obj = $(this);
-    setTimeoutConst = setTimeout(function() {
-      // Удаляем активный класс у предыдущей активной категории
-      $('#menu .catalog__item[data-level="0"]').removeClass('hover');
-      // Добавляем активный класс текущей категории, на которую навел мышь пользователь
-      obj.addClass('hover');
-      // Ищем аккордион первого уровня, для определения его высоты(чтобы каталог всегда выглядел как прямоугольник)
-      var newObj = obj.find('.sub[data-level="1"]');
-      if(newObj.length){
-        var mainCatHeight = $('#menu .catalog__items').innerHeight();
-        var subCatHeight = newObj.innerHeight();
-        // Выравнивание блоков по размерам
-        if (mainCatHeight > subCatHeight) {
-          $('#menu .catalog__items').css('height', 'auto');
-          $('#menu .catalog__item > .sub[data-level="2"]').css('height', mainCatHeight);
-        }else {
-          $('#menu .catalog__items').css('height', subCatHeight);
-          $('#menu .catalog__item > .sub[data-level="2"]').css('height', subCatHeight);
-        }
-      }
-    }, delay);
-  },
-  function() {
-    clearTimeout(setTimeoutConst);
-    //Если юзер убрал мышь, то нужно установить стандартную высоту каталога, либо если активным остался пункт, в котором высота подкатегорий больше , то установить ее.
-    setTimeout(function() {
-      var newObj = $('#menu .catalog__item[data-level="0"].hover').find('.sub[data-level="1"]');
-      if(newObj.length){
-        var mainCatHeight = $('#menu .catalog__items').innerHeight();
-        var subCatHeight = newObj.innerHeight();
-        // Выравнивание блоков по размерам
-        if (mainCatHeight > subCatHeight) {
-          $('#menu .catalog__items').css('height', 'auto');
-          $('#menu .catalog__item > .sub[data-level="2"]').css('height', mainCatHeight);
-        }else {
-          $('#menu .catalog__items').css('height', subCatHeight);
-          $('#menu .catalog__item > .sub[data-level="2"]').css('height', subCatHeight);
-        }
-      }
-    }, delay);
-  });
-  // Добавление класса hover для отображения подкатегорий 1 уровня
-  $('#menu .catalog__item[data-level="1"]').hover(function(event) {
-    var obj = $(this);
-    $('#menu .catalog__item[data-level="1"]').removeClass('hover');
-    obj.addClass('hover');
-  });
-  
-  
+
+
 }
 
 // Много и Мало вместо точного количества
@@ -3247,7 +3140,6 @@ $(document).ready(function(){
   quickViewMod();
   recViewed();
   goodsModRest();
-  mainnavCatalog();
   // Ленивая загрузка
   $(function(){
     const observer = lozad(); // lazy loads elements with default selector as '.lozad'
