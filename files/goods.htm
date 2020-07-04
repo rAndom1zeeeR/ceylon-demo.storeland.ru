@@ -280,7 +280,7 @@
 <div class="productView__tabs">
   <div class="tabs__nav">
     {% IF GOODS_DESCRIPTION_LARGE || GOODS_SEO_DESCRIPTION_SHORT || GOODS_SEO_DESCRIPTION_LARGE %}<div class="tab" data-tab="1">Описание</div>{% ENDIF %}
-    {% IFNOT goods_features_empty %}<div class="tab" data-tab="2"><span>Характеристики</span><span>Хар-ки</span></div>{% ENDIF %}
+    {% IFNOT goods_features_empty %}<div class="tab" data-tab="2"><span>Свойства</span></div>{% ENDIF %}
     {% IFNOT goods_delivery_empty %}<div class="tab" data-tab="3">Доставка</div>{% ENDIF %}
     {% IF SETTINGS_OPINION_DISABLE=0 %}<div class="tab" data-tab="4">Отзывы</div>{% ENDIF %}
   </div>
@@ -327,6 +327,7 @@
       <div class="delivery__item">
         <div class="delivery__name"><span class="delivery__index">{goods_delivery.index}</span><span>{goods_delivery.NAME}</span></div>
         {% IF goods_delivery.DESC %}<div class="delivery__text">{goods_delivery.DESC}</div>{% ENDIF %}
+        {% IFNOT goods_delivery.zone_list_empty || goods_delivery.DESC %}<a href="#" class="delivery__more"><span>Подробнее</span><i class="icon-right-arrow"></i></a>{% ENDIF %}
         {% IF goods_delivery.rules_empty %}
           <div class="delivery__price">
             <span>Стоимость доставки: </span>

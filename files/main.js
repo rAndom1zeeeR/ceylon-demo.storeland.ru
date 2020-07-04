@@ -683,6 +683,23 @@ function goodspage() {
     });
   }
   tabSwitch();
+
+  // Показать описание в доставке
+  $('.delivery__more').on('click', function(event){
+    event.preventDefault();
+    if($(this).parent().hasClass('active')) {
+      $(this).parent().removeClass('active');
+      $(this).parent().find('.delivery__subtitle').slideUp(600);
+      $(this).parent().find('.zone__list').slideUp(600);
+      $(this).parent().find('.delivery__price').slideUp(600);
+    }else{
+      $(this).parent().addClass('active');
+      $(this).parent().find('.delivery__subtitle').slideDown(600);
+      $(this).parent().find('.zone__list').slideDown(600);
+      $(this).parent().find('.delivery__price').slideDown(600);
+    }
+  });
+
 }
 
 // Товары. Категории
@@ -1132,7 +1149,6 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
   }
   $('.cart').addClass("hasItems");
   $('.cart__goods').addClass("hasItems");
-  $('#addtoCart').addClass("hasItems");
   $('.cart__count').animate({opacity: 0,display: "none"},500);
   $('.cart__count').animate({display: "inline",opacity: 1},500);
   // Находим форму, которую отправляем на сервер, для добавления товара в корзину
@@ -1156,9 +1172,35 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
       url: formBlock.attr('action'),
       data: formData,
       success: function(data) {
-        $.fancybox.open(data);
+        // $.fancybox.open(data);
         // Закрытие через 5 секунд
         // setTimeout(function(){$.fancybox.close();}, 5000);
+        // Если есть функция, которая отображает сообщения пользователю
+        if(typeof(Noty) == "function") {
+          new Noty({
+            text: '<div class="ajax__notice">'+ $(data).html() + '</div>',
+            layout:"centerRight",
+            type:"",
+            theme:"metroui",
+            closeWith: ['click', 'button'],
+            textAlign:"center",
+            easing:"swing",
+            animation: {
+              open: 'animated fadeInRight',
+              close: 'animated fadeOutRight',
+              easing: 'swing',
+              speed: 500
+            },
+            timeout:"3000",
+            progressBar:true,
+            closable:true,
+            closeOnSelfClick:true,
+            modal:false,
+            dismissQueue:false,
+            onClose:true,
+            killer:false
+          }).show();
+        }
       }
     });
   return false;
@@ -2728,11 +2770,11 @@ function pdtSales() {
     responsiveClass: true,
     responsiveRefreshRate: 100,
     responsive: {
-      0:{items:1, autoHeight: true},
-      320:{items:1, autoHeight: true},
-      481:{items:1, autoHeight: true},
-      641:{items:1, autoHeight: true},
-      768:{items:1, autoHeight: true},
+      0:{items:1},
+      320:{items:1},
+      481:{items:1},
+      641:{items:1},
+      768:{items:1},
       992:{items:2},
       1200:{items:2}
     }
@@ -2762,10 +2804,10 @@ function pdtOffers() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1, margin: 16},
-      481:{items:1, margin: 16},
-      641:{items:1, margin: 16},
-      768:{items:1, margin: 16},
+      320:{items:1},
+      481:{items:1},
+      641:{items:1},
+      768:{items:1},
       992:{items:2, margin: 16},
       1200:{items:2}
     }
@@ -2965,36 +3007,61 @@ function slideShow() {
 }
 // Новости
 function newsCarousel() {
-$("#news .owl-carousel").owlCarousel({
-  items: 2,
-  margin: 32,
-  loop: false,
-  rewind: true,
-  lazyLoad: true,
-  nav: true,
-  navContainer: '#news .owl-nav',
-  navText: [ , ],
-  dots: false,
-  autoHeight: false,
-  autoHeightClass: 'owl-height',
-  autoplay: false,
-  autoplayHoverPause: true,
-  smartSpeed: 500,
-  mouseDrag: true,
-  touchDrag: true,
-  pullDrag: true,
-  responsiveClass: true,
-  responsiveRefreshRate: 100,
-  responsive: {
-    0:{items:1},
-    320:{items:1, margin: 16},
-    481:{items:1, margin: 16},
-    641:{items:2, margin: 16},
-    768:{items:2},
-    992:{items:2},
-    1200:{items:2}
-  }
-});
+  $("#news .owl-carousel").owlCarousel({
+    items: 2,
+    margin: 32,
+    loop: false,
+    rewind: true,
+    lazyLoad: true,
+    nav: true,
+    navContainer: '#news .owl-nav',
+    navText: [ , ],
+    dots: false,
+    autoHeight: false,
+    autoHeightClass: 'owl-height',
+    autoplay: false,
+    autoplayHoverPause: true,
+    smartSpeed: 500,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    responsiveClass: true,
+    responsiveRefreshRate: 100,
+    responsive: {
+      0:{items:1},
+      320:{items:1, margin: 16},
+      481:{items:1, margin: 16},
+      641:{items:2, margin: 16},
+      768:{items:2},
+      992:{items:2},
+      1200:{items:2}
+    }
+  });
+}
+
+// Функция показать больше для Акции на главной странице
+function bannerSlide() {
+  $('#banners .owl-carousel').owlCarousel({
+    items: 1,
+    margin: 0,
+    loop: false,
+    rewind: true,
+    lazyLoad: true,
+    nav: false,
+    navContainer: '#banners .owl-nav',
+    navText: [ , ],
+    dots: true,
+    autoHeight: true,
+    autoHeightClass: 'owl-height',
+    autoplay: false,
+    autoplayHoverPause: true,
+    smartSpeed: 500,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    responsiveClass: true,
+    responsiveRefreshRate: 100
+  });
 }
 
 // Открытие Контактов, Меню, Сравнения, Избранного
@@ -3097,10 +3164,15 @@ function goodsModRest() {
       $(this).html('Много');
       $(this).css('opacity', '1');
       $(this).parent().addClass('many');
+      $(this).parent().removeClass('few');
     }else{
       $(this).html('Мало');
       $(this).css('opacity', '1');
       $(this).parent().addClass('few');
+      $(this).parent().removeClass('many');
+    }
+    if (value == 0) {
+      $(this).parent().removeClass('few');
     }
   });
 }

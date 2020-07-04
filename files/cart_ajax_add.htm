@@ -1,4 +1,5 @@
-<div class="ajax__cart modal addto__goods">
+<div class="ajax__notice">{FORM_NOTICE}</div>
+<div class="ajax__cart modal addto__goods" style="display: none">
   {% IF FORM_NOTICE %}<div class="modal__title title">{FORM_NOTICE}</div>{% ENDIF %}
   <div class="modal__content">
     <div class="goods__items">
@@ -91,5 +92,5 @@ $('.addto__count').html($('#newCartCountLabel').html());
 $('.cart__count').html($('#newCartCount').html());
 $('.cart__count').attr('data-count', $('#newCartCount').html());
 $('.cart__goods').html($('#newCartData').html());
-$('.fancyModalClose').click(function(){$.fancybox.close();});
+$('.fancyModalClose').click(function(){$.fancybox.destroy();});
 </script>

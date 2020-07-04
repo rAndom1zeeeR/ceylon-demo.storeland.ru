@@ -308,15 +308,12 @@
   <div class="cart__icon">
     <i class="icon-cart"></i>
     <span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
+    <!-- span class="icon__full"></span-->
   </div>
   <a href="{CART_URL}" title="Корзина">
-    <div class="cart__empty">Корзина</div>
+    <div class="cart__label">Корзина</div>
     {% IF CART_COUNT_TOTAL > 0 %}
     <div class="cart__full">
-      <div class="cart__title">В корзине</div>
-      <span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
-      <span class="cart__measure">товар{CART_COUNT_TOTAL| gen_word_end("","а","ов")}</span>
-      <span> на </span>
       <span class="cart__totalSum totalSum">{CART_SUM_NOW_WITH_DISCOUNT | money_format }</span>
     </div>
     {% ENDIF %}
@@ -370,6 +367,5 @@ $('.addto__count').html($('#newCartCountLabel').html());
 $('.cart__count').html($('#newCartCount').html());
 $('.cart__count').attr('data-count', $('#newCartCount').html());
 $('.cart__goods').html($('#newCartData').html());
-$('.header__cart').addClass('hasItems');
 </script>
 <!-- end Блок для обновления данных корзины. Не виден пользователю -->
