@@ -307,7 +307,7 @@ header .overflowMenu.active {display: flex;}
 .addto__links .cart__icon {display: flex;align-items: center;position: relative;margin-right: 0.625rem;line-height: 1;}
 .addto__links .cart .cart__icon .icon__full {display: none;}
 .addto__links .cart.hasItems .cart__icon .icon__full {display: block;position: absolute;top: calc(50% - 4px);right: 0;width: 8px;height: 8px;background: #9cd93d;border-radius: 100%;}
-.addto__links .cart__label {font-size: 1.125rem;font-weight: bold;font-family: 'Philosopher', sans-serif;}
+.addto__links .cart__title {font-size: 1.125rem;font-weight: bold;font-family: 'Philosopher', sans-serif;}
 .addto__links .cart__totalSum {color: #85d900;font-family: 'Philosopher', sans-serif;}
 
 @media all and (max-width: 1199px) {
@@ -1183,7 +1183,7 @@ section {margin: 3rem 0;}
 @media all and (max-width: 991px) {
 #sidebar {top: auto;bottom: 0;left: 0;width: 100%;display: flex;}
 #sidebar.opened {padding-right: 0px;}
-#sidebar .dropside__content {bottom: 60px;top: auto;left: -100%;right: auto;max-width: 540px;width: 100%;max-height: 460px;height: 414px;}
+#sidebar .dropside__content {bottom: 60px;top: auto;left: -100%;right: auto;max-width: 540px;width: 100%;max-height: 460px;height: 100%;}
 #sidebar .dropside__content.opened {opacity: 1;right: auto;left: 0;}
 #sidebar > div {flex-grow: 1;border-top: 1px solid #ccd2c2;border-left: 0;text-align: center;padding: 16px 0 10px 0;height: 60px;}
 #sidebar > div:first-child {height: 60px;display: block;}
@@ -1212,7 +1212,7 @@ section {margin: 3rem 0;}
 .fancybox-content {max-width: 90%;padding: 2rem;}
 }
 @media all and (max-width: 481px) {
-.fancybox-content {max-width: 90%;padding: 1rem;}
+.fancybox-content {max-width: 90%;padding: 0;}
 .modal__title {font-size: 21px;}
 .modal__content {padding: 1rem;}
 }
@@ -1543,14 +1543,15 @@ section {margin: 3rem 0;}
 .productView__imageBox {width: 100%;order: 1;}
 .productView__shop {width: 100%;order: 3;}
 .productView__addtoCart {justify-content: flex-start;}
-.productView__addtoCart .add-cart.quick {display: none;}
 .empty .productView__notify {justify-content: flex-start;}
 .productView__name {font-size: 26px;max-height: 5rem;}
 }
+@media all and (max-width: 641px) {
+.productView__shop .productView__inner {padding: 1rem;}
+}
 @media all and (max-width: 481px) {
 .productView__price .price__old {margin-bottom: 0.5rem;}
-.productView__shop .productView__inner {padding: 1rem;}
-.productView__addtoCart .add-cart {width: 100%;}
+.productView__addtoCart .add-cart {width: 100%;padding: 0;}
 .productView__name {font-size: 20px;max-height: 4rem;}
 }
 

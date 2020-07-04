@@ -1148,7 +1148,7 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
     return (false);
   }
   $('.cart').addClass("hasItems");
-  $('.cart__goods').addClass("hasItems");
+  $('.addto__cart').addClass("hasItems");
   $('.cart__count').animate({opacity: 0,display: "none"},500);
   $('.cart__count').animate({display: "inline",opacity: 1},500);
   // Находим форму, которую отправляем на сервер, для добавления товара в корзину
@@ -1201,6 +1201,8 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
             killer:false
           }).show();
         }
+        // Скрытое обновление корзины
+        $('.hiddenUpdate').html(data);
       }
     });
   return false;
@@ -1727,7 +1729,7 @@ function removeFromCart(e){
       console.log($(d).find('.addto__count').html());
       var flag = 0; 
       if(newCount != 0){
-      $('.cart__goods .goods__item').each(function(){
+      $('.addto__cart .goods__item').each(function(){
         if(flag == 0){
           if($(this).css('display') == 'none'){
             $(this).css('display', 'flex');
@@ -1737,12 +1739,12 @@ function removeFromCart(e){
       })}else{
         $('#addtoCart').removeClass("hasItems");
         $('.cart').removeClass("hasItems");
-        $('.cart__goods').removeClass("hasItems");
+        $('.addto__cart').removeClass("hasItems");
         $('.cart__count').attr('data-count', '0').text("0");
-        $('.cart__goods .goods__item').remove();
-        $('.cart__goods .goods__buttons').hide();
-        $('.cart__goods .goods__empty').show();
-        $('.cart__goods .preloader').hide();
+        $('.addto__cart .goods__item').remove();
+        $('.addto__cart .goods__buttons').hide();
+        $('.addto__cart .goods__empty').show();
+        $('.addto__cart .preloader').hide();
         $('.cart__full').hide();
         $('.addto__count').hide();
       }
@@ -1755,7 +1757,7 @@ function removeFromCartAll(e){
   event.preventDefault();
   if(confirm('Вы точно хотите очистить корзину?')){
   // Предзагрузчик анимации
-  $('.cart__goods').prepend('<div class="preloader small"><div class="loading"></div></div>');
+  $('.addto__cart').prepend('<div class="preloader small"><div class="loading"></div></div>');
   var del = e;  
   e.parent().fadeOut().remove();
   url = del.attr('href');
@@ -1765,12 +1767,12 @@ function removeFromCartAll(e){
     success: function(d){
       $('#addtoCart').removeClass("hasItems");
       $('.cart').removeClass("hasItems");
-      $('.cart__goods').removeClass("hasItems");
+      $('.addto__cart').removeClass("hasItems");
       $('.cart__count').attr('data-count', '0').text("0");
-      $('.cart__goods .goods__item').remove();
-      $('.cart__goods .goods__buttons').hide();
-      $('.cart__goods .goods__empty').show();
-      $('.cart__goods .preloader').hide();
+      $('.addto__cart .goods__item').remove();
+      $('.addto__cart .goods__buttons').hide();
+      $('.addto__cart .goods__empty').show();
+      $('.addto__cart .preloader').hide();
       $('.cart__full').hide();
       $('.addto__count').hide();
 		}

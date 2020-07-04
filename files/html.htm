@@ -119,14 +119,14 @@
               {% ENDIF %}
               <!-- Корзина -->
               <div class="cart {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %} dropside">
-                <div class="addto__label dropside__open" data-open="cart">
+                <div class="addto__label cart__label dropside__open" data-open="cart">
                   <div class="cart__icon">
                     <i class="icon-cart"></i>
                     <span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
                     <!-- span class="icon__full"></span-->
                   </div>
                   <a href="{CART_URL}" title="Корзина">
-                    <div class="cart__label">Корзина</div>
+                    <div class="cart__title">Корзина</div>
                     {% IF CART_COUNT_TOTAL > 0 %}
                     <div class="cart__full">
                       <span class="cart__totalSum totalSum">{CART_SUM_NOW_WITH_DISCOUNT | money_format }</span>
@@ -1926,7 +1926,7 @@
               <i class="icon-cancel"></i>
             </div>
           </div>
-          <div class="addto__goods cart__goods">
+          <div class="addto__goods addto__cart">
             {% IFNOT cart_items_empty %}
             <div class="goods__items">
               {% FOR cart_items %}
@@ -2074,6 +2074,8 @@
 
     <!-- Модальные окна -->
     <noindex>
+    <!-- Скрытое обновление корзины -->
+    <div class="hiddenUpdate" style="display: none;"></div>
     <!-- Политика конфиденциальности в модальном окне -->
     <div id="fancybox__pp" class="modal" style="display:none">
       <h2 class="modal__title"><span>Политика приватности</span></h2>

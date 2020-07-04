@@ -311,7 +311,7 @@
     <!-- span class="icon__full"></span-->
   </div>
   <a href="{CART_URL}" title="Корзина">
-    <div class="cart__label">Корзина</div>
+    <div class="cart__title">Корзина</div>
     {% IF CART_COUNT_TOTAL > 0 %}
     <div class="cart__full">
       <span class="cart__totalSum totalSum">{CART_SUM_NOW_WITH_DISCOUNT | money_format }</span>
@@ -362,10 +362,10 @@
 </div>
 <!-- Обновление данных корзины -->
 <script>
-$('header .cart__label').html($('#newCartLabel').html());
+$('header .cart .cart__label').html($('#newCartLabel').html());
 $('.addto__count').html($('#newCartCountLabel').html());
 $('.cart__count').html($('#newCartCount').html());
 $('.cart__count').attr('data-count', $('#newCartCount').html());
-$('.cart__goods').html($('#newCartData').html());
+$('.addto__cart').html($('#newCartData').html());
 </script>
 <!-- end Блок для обновления данных корзины. Не виден пользователю -->
