@@ -1018,8 +1018,12 @@ function goodsModification() {
         
         if(modificationRestValue>10) {
           goodsModRestValue.html('Много');
+          goodsModRestValue.parent().addClass('many');
+          goodsModRestValue.parent().removeClass('few');
         } else {
           goodsModRestValue.html('Мало');
+          goodsModRestValue.parent().addClass('few');
+          goodsModRestValue.parent().removeClass('many');
         }
         
         // Покажем артикул модификации товара, если он указан
@@ -1178,7 +1182,7 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
         // Если есть функция, которая отображает сообщения пользователю
         if(typeof(Noty) == "function") {
           new Noty({
-            text: '<div class="ajax__notice">'+ $(data).html() + '</div>',
+            text: '<div class="addto__notice">'+ $(data).html() + '</div>',
             layout:"centerRight",
             type:"",
             theme:"metroui",
@@ -1328,16 +1332,16 @@ $('.add-compare').off('click').click(function(){
           // Если есть функция, которая отображает сообщения пользователю
           if(typeof(Noty) == "function") {
             new Noty({
-              text: '<div class="noty__addto"><i class="material-icons">done</i><div class="noty__message">'+ data.message + '</div></div>',
-              layout:"bottom",
-              type:"success",
+              text: '<div class="addto__notice">'+ data.message + '</div>',
+              layout:"centerRight",
+              type:"",
               theme:"metroui",
               closeWith: ['click', 'button'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInUp',
-                close: 'animated fadeOutDown',
+                open: 'animated fadeInRight',
+                close: 'animated fadeOutRight',
                 easing: 'swing',
                 speed: 500
               },
@@ -1355,16 +1359,16 @@ $('.add-compare').off('click').click(function(){
           // Если есть функция, которая отображает сообщения пользователю
           if(typeof(Noty) == "function") {
             new Noty({
-              text: '<div class="noty__addto"><i class="material-icons">warning</i><div class="noty__message">'+ data.message + '</div></div>',
-              layout:"bottom",
-              type:"warning",
+              text: '<div class="addto__notice error">'+ data.message + '</div>',
+              layout:"centerRight",
+              type:"",
               theme:"metroui",
               closeWith: ['click', 'button'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInUp',
-                close: 'animated fadeOutDown',
+                open: 'animated fadeInRight',
+                close: 'animated fadeOutRight',
                 easing: 'swing',
                 speed: 500
               },
@@ -1502,16 +1506,16 @@ $('.add-favorites').off('click').click(function(){
           // Если есть функция, которая отображает сообщения пользователю
           if(typeof(Noty) == "function") {
             new Noty({
-              text: '<div class="noty__addto"><i class="material-icons">done</i><div class="noty__message">'+ data.message + '</div></div>',
-              layout:"bottom",
-              type:"success",
+              text: '<div class="addto__notice">'+ data.message + '</div>',
+              layout:"centerRight",
+              type:"",
               theme:"metroui",
               closeWith: ['click', 'button'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInUp',
-                close: 'animated fadeOutDown',
+                open: 'animated fadeInRight',
+                close: 'animated fadeOutRight',
                 easing: 'swing',
                 speed: 500
               },
@@ -1529,16 +1533,16 @@ $('.add-favorites').off('click').click(function(){
           // Если есть функция, которая отображает сообщения пользователю
           if(typeof(Noty) == "function") {
             new Noty({
-              text: '<div class="noty__addto"><i class="material-icons">warning</i><div class="noty__message">'+ data.message + '</div></div>',
-              layout:"bottom",
-              type:"warning",
+              text: '<div class="addto__notice error">'+ data.message + '</div>',
+              layout:"centerRight",
+              type:"",
               theme:"metroui",
               closeWith: ['click', 'button'],
               textAlign:"center",
               easing:"swing",
               animation: {
-                open: 'animated fadeInUp',
-                close: 'animated fadeOutDown',
+                open: 'animated fadeInRight',
+                close: 'animated fadeOutRight',
                 easing: 'swing',
                 speed: 500
               },
