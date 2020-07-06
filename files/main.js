@@ -879,10 +879,36 @@ function quantity() {
     return false;
   });
   // Если вводят 0 то заменяем на 1
-  $('.qty .quantity, .cartqty').change(function(){
+  $('.cartqty').change(function(){
     if($(this).val() < 1){
       $(this).val(1);
     }
+  });
+  $('.qty .quantity').change(function(){
+    // Если вводят 0 то заменяем на 1
+    if($(this).val() < 1){
+      $(this).val(1);
+    }
+    // Обновление кол-ва для функций "Добавить"
+    $('.goodsDataMainModificationId').val($(this).val());
+    // Количество
+    var val = parseInt($(this).val());
+    // Цена товара без изменений
+    var price = parseInt($('.productView__price .price__now').attr('content'));
+    var newPrice = 0;
+    // Проверяем наличие добавленных товаров вместе с основным
+    if ($('.productView__form [class^="goodsID-"]').length) {
+      $('.productView__form [class^="goodsID-"]').each(function(){
+        // Сумма всех добавленных товаров
+        newPrice += parseInt($(this).attr('data-price'))
+      });
+    }
+    // Считаем новую сумму товара с учетом добавленных
+    var multi = val * price + newPrice;
+    // Обновляем новую сумму
+    $('.productView__price .price__now').attr('data-price', multi).find('.num').text(multi)
+
+
   });
 }
 
@@ -990,6 +1016,15 @@ function goodsModification() {
       if(modificationBlock.length) {
         // Цена товара
         goodsPriceNow.html(modificationPriceNowFormated);
+        goodsPriceNow.attr('data-price', modificationPriceNow);
+        goodsPriceNow.attr('content', modificationPriceNow);
+        $('.related .related-box-checkbox').each(function(i, checkbox){
+          var $checkbox = $(checkbox);
+          var checkboxActive = $checkbox.prop('checked');
+          if(checkboxActive) {
+            changePrice($checkbox, checkboxActive);
+          }
+        })
         // Старая цена товара
         if(modificationPriceOld>modificationPriceNow) {
           goodsPriceOld.html(modificationPriceOldFormated);
@@ -1043,6 +1078,7 @@ function goodsModification() {
         }
         // Идентификатор товарной модификации
         goodsModificationId.val(modificationId);
+        $('.goodsDataMainModificationId').attr('name','form[goods_mod_id][' + modificationId + ']');
         // Меняет главное изображение товара на изображение с идентификатором goods_mod_image_id
         function changePrimaryGoodsImage(goods_mod_image_id) {
           // Если не указан идентификатор модификации товара, значит ничего менять не нужно.
@@ -1079,6 +1115,47 @@ function goodsModification() {
       updateVisibility(y);
     });
   });
+
+  $('.related .related-box-checkbox').on('change', function(){
+    var $checkbox = $(this);
+    var modId = $checkbox.data('mod-id');
+    var checkboxActive = $checkbox.prop('checked');
+
+    if (checkboxActive) {
+      // Создаём инпут с доп товаром
+      var $input = $('<input class="goodsID-' + modId + '">')
+        .attr('type', 'hidden')
+        .attr('name', 'form[goods_mod_id][' + modId + ']')
+        .attr('data-price', $checkbox.data('mod-price'))
+        .val(1);
+      $('.productView__form').append($input);
+      // Пересчёт цены
+      changePrice($checkbox, checkboxActive);
+    } else {
+      // Удаляем  доп товар
+      $('.productView__form').find('input[name="form[goods_mod_id][' + modId + ']"]').remove();
+      // Пересчёт цены
+      changePrice($checkbox, checkboxActive)
+    }
+  })
+
+  function changePrice(currentCheckbox, checkboxActive){
+    var $checkbox = currentCheckbox;
+    var checkboxPrice = $checkbox.data('mod-price');
+    var $priceNowBlock = $('.productView__price .price__now');
+    var nowPrice = $priceNowBlock.attr('data-price');
+    var newPrice = 0;
+    if (checkboxActive) {
+      newPrice = String(parseInt(nowPrice) + parseInt(checkboxPrice));
+      $priceNowBlock.attr('data-price', parseInt(nowPrice) + parseInt(checkboxPrice))
+    } else {
+      newPrice = String(nowPrice - checkboxPrice);
+      $priceNowBlock.attr('data-price', parseInt(nowPrice)  - parseInt(checkboxPrice))
+    }
+    $priceNowBlock.find('.num').text(parseInt(newPrice))
+  }
+
+
 }
 
 // Сравнение товаров
@@ -1149,6 +1226,7 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
   // Выносим функции из шаблонов
   if ($(this).attr('rel') === 'quick') {
     quickOrder(this);
+    $('.cart').addClass("hasItems");
     return (false);
   }
   $('.cart').addClass("hasItems");
@@ -2218,6 +2296,8 @@ function quickOrder(formSelector) {
       $('.fastOrder__form').validate({
         errorPlacement: function(error, element) { }
       });
+      // Скрытое обновление корзины
+      $('.hiddenUpdate').html(data);
 		}
 	});
   return false;

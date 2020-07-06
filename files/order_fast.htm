@@ -314,7 +314,7 @@
     <div class="cart__title">Корзина</div>
     {% IF CART_COUNT_TOTAL > 0 %}
     <div class="cart__full">
-      <span class="cart__totalSum totalSum">{CART_SUM_NOW_WITH_DISCOUNT | money_format }</span>
+      <span class="cart__totalSum totalSum">{CART_SUM_NOW | money_format }</span>
     </div>
     {% ENDIF %}
   </a>
