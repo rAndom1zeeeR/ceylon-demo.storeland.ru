@@ -878,38 +878,33 @@ function quantity() {
     }
     return false;
   });
-  // Если вводят 0 то заменяем на 1
-  $('.cartqty').change(function(){
-    if($(this).val() < 1){
-      $(this).val(1);
-    }
-  });
-  $('.qty .quantity').change(function(){
-    // Если вводят 0 то заменяем на 1
-    if($(this).val() < 1){
-      $(this).val(1);
-    }
-    // Обновление кол-ва для функций "Добавить"
-    $('.goodsDataMainModificationId').val($(this).val());
-    // Количество
-    var val = parseInt($(this).val());
-    // Цена товара без изменений
-    var price = parseInt($('.productView__price .price__now').attr('content'));
-    var newPrice = 0;
-    // Проверяем наличие добавленных товаров вместе с основным
-    if ($('.productView__form [class^="goodsID-"]').length) {
-      $('.productView__form [class^="goodsID-"]').each(function(){
-        // Сумма всех добавленных товаров
-        newPrice += parseInt($(this).attr('data-price'))
-      });
-    }
-    // Считаем новую сумму товара с учетом добавленных
-    var multi = val * price + newPrice;
-    // Обновляем новую сумму
-    $('.productView__price .price__now').attr('data-price', multi).find('.num').text(multi)
-
-
-  });
+  // Изменение кол-ва в карточке
+  if ($('.qty .quantity').length) {
+    $('.qty .quantity').change(function(){
+      // Если вводят 0 то заменяем на 1
+      if($(this).val() < 1){
+        $(this).val(1);
+      }
+      // Обновление кол-ва для функций "Добавить"
+      $('.goodsDataMainModificationId').val($(this).val());
+      // Количество
+      var val = parseInt($(this).val());
+      // Цена товара без изменений
+      var price = parseInt($('.productView__price .price__now').attr('content'));
+      var newPrice = 0;
+      // Проверяем наличие добавленных товаров вместе с основным
+      if ($('.productView__form [class^="goodsID-"]').length) {
+        $('.productView__form [class^="goodsID-"]').each(function(){
+          // Сумма всех добавленных товаров
+          newPrice += parseInt($(this).attr('data-price'))
+        });
+      }
+      // Считаем новую сумму товара с учетом добавленных
+      var multi = val * price + newPrice;
+      // Обновляем новую сумму
+      $('.productView__price .price__now').attr('data-price', multi).find('.num').text(multi)
+    });
+  }
 }
 
 // Радио кнопки для модификаций
@@ -1024,7 +1019,7 @@ function goodsModification() {
           if(checkboxActive) {
             changePrice($checkbox, checkboxActive);
           }
-        })
+        });
         // Старая цена товара
         if(modificationPriceOld>modificationPriceNow) {
           goodsPriceOld.html(modificationPriceOldFormated);

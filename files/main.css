@@ -297,7 +297,7 @@ header .overflowMenu.active {display: flex;}
 .header__contacts .feedback__click {display: flex;align-items: center;justify-content: flex-end;margin-top:0.5rem;font-size: 0.875rem;}
 /** Избранное и Сравнение **/
 .header__addto {width: 330px;padding-left: 2rem;order: 4;}
-.header__addto .header__link {justify-content: flex-start;}
+.header__addto .header__link {justify-content: flex-end;}
 .addto__links {display: flex;align-items: center;justify-content: flex-end;height: 50px;}
 .addto__links .addto__label {display: flex;align-items: center;padding: 0 0.625rem;}
 .addto__links .addto__label i {font-size: 30px;}
@@ -336,8 +336,7 @@ header .overflowMenu {display: block;}
 .header__contacts .contacts__phone, .header__contacts .feedback__click {justify-content: flex-end;}
 }
 
-
-
+/* Каталог */
 #catalog .catalog__icon {padding: 0;border-radius: 25px 0 0 25px;width: 250px;}
 #catalog .catalog__item[data-level="0"] {position: relative;border-bottom: 1px solid #ccd2c2;padding: 0.5rem 0;}
 #catalog .catalog__item.parent {}

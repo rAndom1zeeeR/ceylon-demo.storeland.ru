@@ -908,6 +908,10 @@
                   <a class="add-cart button" title="Добавить в корзину &laquo;{related_views_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={related_views_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={related_views_goods.MIN_PRICE_NOW_ID}"><span>Купить</span></a>
                 {% ENDIF %}
               </div>
+              <div class="product__check">
+                <input class="checkbox-hidden related-box-checkbox square" id="{related_views_goods.MIN_PRICE_NOW_ID}" type="checkbox" data-mod-id="{related_views_goods.MIN_PRICE_NOW_ID}" data-mod-price="{related_views_goods.MIN_PRICE_NOW}">
+                <label class="checkbox-name related-box-checkbox-name" for="{related_views_goods.MIN_PRICE_NOW_ID}">Добавить</label>
+              </div>
             </div>
           </form>
         </div>
