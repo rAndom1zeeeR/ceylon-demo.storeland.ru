@@ -1835,8 +1835,7 @@ function removeFromCartAll(e){
   if(confirm('Вы точно хотите очистить корзину?')){
   // Предзагрузчик анимации
   $('.addto__cart').prepend('<div class="preloader small"><div class="loading"></div></div>');
-  var del = e;  
-  e.parent().fadeOut().remove();
+  var del = e;
   url = del.attr('href');
   $.ajax({ 
     cache  : false,

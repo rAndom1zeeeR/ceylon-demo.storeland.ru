@@ -1678,6 +1678,7 @@ section {margin: 3rem 0;}
 .related .products__grid .product__item .product__cart {position: relative;opacity: 1;width: 70%;left: auto;top: auto;height: auto;margin: 1rem auto 0;padding: 0;border: 0;}
 .related .products__grid .product__item .product__cart:before {display: none;}
 .related .products__grid.owl-carousel .owl-stage-outer {padding: 0 1px;}
+.related__goods .products__grid .product__item .product__cart {display: none;}
 .related .product__check {display: flex;align-items: center;justify-content: center;margin-top: 1rem;}
 .related .product__check label {cursor: pointer;}
 .related .product__check:hover {color: #9cd93d;}
