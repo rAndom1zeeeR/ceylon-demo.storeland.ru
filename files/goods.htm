@@ -206,8 +206,8 @@
               <!-- Если это первый элемент в списке -->
               {% IF goods_modifications_properties.values.first %}
                 <label>{goods_modifications_properties.NAME}:</label>
-                <div class="selectBox" style="display: none">
-                  <select name="form[properties][]" class="selectBox">
+                <div class="selectBox">
+                  <select name="form[properties][]">
                 {% ENDIF %}
                   <option value="{goods_modifications_properties.values.ID}" {% IF goods_modifications_properties.values.SELECTED %}selected="selected"{% ENDIF %}>{goods_modifications_properties.values.NAME}</option>
                   <!-- Если это последний элемент в списке -->

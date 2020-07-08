@@ -1229,6 +1229,8 @@ section {margin: 3rem 0;}
 .productViewMod .productView__addto {margin-top: 0;}
 .productViewMod .productView__box {display: none;}
 .productViewMod .productView__ratings {display: none;}
+.productViewMod .goodsModificationsProperty .selectBox {display: block;margin-bottom: 1rem;}
+.productViewMod .goodsModificationsValues {display: none;}
 .fancybox-content .productView__addtoCart {justify-content: flex-start;margin-top: 1rem;}
 .fancybox-content .productView__name {font-size: 26px;text-transform: none;}
 .fancybox-content .productView__box {justify-content: flex-start;}
@@ -1509,6 +1511,7 @@ section {margin: 3rem 0;}
 /* Товар: Модификации */
 .productView__form {margin-top: 1rem;}
 .goodsModificationsProperty label {display: block;margin-bottom: 6px;}
+.goodsModificationsProperty .selectBox {display: none;}
 .goodsModificationsValues {display: flex;align-items: center;flex-wrap: wrap;}
 .goodsModificationsValue {border: 1px solid #ccd2c2;padding: 5px 0.625rem;margin: 0 1rem 1rem 0;cursor: pointer;}
 .goodsModificationsValue.active, .goodsModificationsValue:hover {border-color: #9cd93d;}
@@ -1823,22 +1826,7 @@ div[col] > div {width: 100%;}
 .fastOrder #fastOrderForm .fastOrder__left, .fastOrder #fastOrderForm .fastOrder__right {width: 100%;padding: 0;}
 .fancybox-slide--html .fancybox-close-small:hover {color: #fff;}
 
-/*** Ajax добавление в корзину
-.ajax__cart .modal__title {display: block;text-transform: none;font-size: 1.25rem;}
-.ajax__cart .modal__title a {font-weight: 500;}
-.ajax__cart.addto__goods .goods__item {max-height: auto;height: auto;}
-.ajax__cart.addto__goods .goods__item {border: 0;padding: 0;justify-content: center;}
-.ajax__cart.addto__goods .goods__buttons {display: flex;flex-wrap: wrap;}
-.ajax__cart.addto__goods .goods__name {display: none;}
-.ajax__cart .goods__mod {font-size: 1rem;}
-.ajax__cart .goods__price {font-size: 1.25rem;}
-.ajax__cart .goods__items {max-height: 100%;overflow: hidden;}
-@media all and (max-width: 481px) {
-.ajax__cart.addto__goods .goods__buttons {justify-content: center;}
-.ajax__cart.addto__goods .goods__buttons .button {margin-top: 1rem;line-height: 40px;}
-.ajax__cart.addto__goods .goods__buttons .button3 {line-height: 38px;}
-}
-***/
+/*** Ajax добавление в корзину ***/
 .addto__notice {border: 1px solid #9cd93d;background: #FFFFFF;padding: 3rem 1rem;text-align: center;font-size: 1rem;}
 .addto__notice a {font-weight: bold;}
 .addto__notice.error {color: #D893A4;border-color: #D893A4;}

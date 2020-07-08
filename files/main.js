@@ -916,7 +916,7 @@ function newModification() {
     $(this).find('.goodsModificationsValue[data-value="'+ dis +'"]').removeClass('active');
     $(this).find('.goodsModificationsValue[data-value="'+ dis +'"]').addClass('disabled');
   });
-  $('.goodsModificationsValue').click(function(){
+  $('.goodsModificationsValue:not(.disabled)').click(function(){
     $(this).parent().find('.goodsModificationsValue').removeClass('active');
     $(this).addClass('active');
     a = $(this).data('value');
@@ -960,10 +960,13 @@ function goodsModification() {
           slug = checkProperties.sort(function(a,b){return a - b}).join('_');
           // Ищем модификацию по всем выбранным значениям свойств товара. Если модификации нет в возможном выборе, отмечаем потенциальное значение выбора как не доступное для выбора, т.к. такой модификации нет.
           if(!goodsDataModifications.filter('[rel="'+slug+'"]').length) {
-           $(this).attr('disabled', true);
-          // Если выбрав данное значение свойства товара можно подобрать модификацию, то выделяем вариант выбора как доступный.
+            $(this).attr('disabled', true);
+            $('.goodsModificationsValue[data-value="'+ $(this).val() +'"]').addClass('disabled');
+            $('.goodsModificationsValue[data-value="'+ $(this).val() +'"]').attr('disabled', true);
           } else {
             $(this).attr('disabled', false);
+            $('.goodsModificationsValue[data-value="'+ $(this).val() +'"]').removeClass('disabled');
+            $('.goodsModificationsValue[data-value="'+ $(this).val() +'"]').attr('disabled', true);
           }
         });
       }
@@ -1022,9 +1025,12 @@ function goodsModification() {
         });
         // Старая цена товара
         if(modificationPriceOld>modificationPriceNow) {
+          goodsPriceOld.show();
           goodsPriceOld.html(modificationPriceOldFormated);
+          console.log('> price', modificationPriceOld + '>' + modificationPriceNow)
         } else {
-          goodsPriceOld.html('');
+          goodsPriceOld.hide();
+          console.log('< price', modificationPriceOld + '<' + modificationPriceNow)
         }
         // Есть ли товар есть в наличии
         if(modificationRestValue>0) {
