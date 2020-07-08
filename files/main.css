@@ -1230,7 +1230,7 @@ section {margin: 3rem 0;}
 .productViewMod .productView__box {display: none;}
 .productViewMod .productView__ratings {display: none;}
 .fancybox-content .productView__addtoCart {justify-content: flex-start;margin-top: 1rem;}
-.fancybox-content .productView__name {font-size: 26px;}
+.fancybox-content .productView__name {font-size: 26px;text-transform: none;}
 .fancybox-content .productView__box {justify-content: flex-start;}
 .fancybox-content .productView__tabs {display: none;}
 @media all and (max-width: 641px) {
