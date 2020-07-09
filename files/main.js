@@ -1872,6 +1872,10 @@ function validName(){
   }else{
     name.addClass('error');
     name.attr('placeholder','Вы не ввели Имя');
+    setTimeout(function(){
+      name.removeClass('error');
+      name.attr('placeholder','Введите Имя');
+    }, 5000);
     return false;
   } 
 }
@@ -1886,6 +1890,10 @@ function validPhone(){
   else{
     tel.addClass('error');
     tel.attr('placeholder','Вы ввели неверный номер');
+    setTimeout(function(){
+      tel.removeClass('error');
+      tel.attr('placeholder','Введите номер');
+    }, 5000);
     return false;
   }
 }
@@ -1910,6 +1918,10 @@ function validNameMain(){
   }else{
     name.addClass('error');
     name.attr('placeholder','Вы не ввели Имя');
+    setTimeout(function(){
+      name.removeClass('error');
+      name.attr('placeholder','Введите Имя');
+    }, 5000);
     return false;
   }
 }
@@ -1924,6 +1936,10 @@ function validPhoneMain(){
   else{
     tel.addClass('error');
     tel.attr('placeholder','Вы ввели неверный номер');
+    setTimeout(function(){
+      tel.removeClass('error');
+      tel.attr('placeholder','Введите номер');
+    }, 5000);
     return false;
   }
 }
@@ -1950,6 +1966,10 @@ function validEmail(){
     email.addClass('error');
     email.val('');
     email.attr('placeholder','Вы ввели неверный Email');
+    setTimeout(function(){
+      email.removeClass('error');
+      email.attr('placeholder','Введите Email');
+    }, 5000);
     return false;
   }
 }
@@ -2020,6 +2040,10 @@ function validPhoneNotify(){
   else{
     tel.addClass('error');
     tel.attr('placeholder','Вы ввели неверный номер');
+    setTimeout(function(){
+      tel.removeClass('error');
+      tel.attr('placeholder','Введите номер');
+    }, 5000);
     return false;
   }
 }
@@ -2035,6 +2059,10 @@ function validEmailNotify(){
     email.addClass('error');
     email.val('');
     email.attr('placeholder','Вы ввели неверный Email');
+    setTimeout(function(){
+      email.removeClass('error');
+      email.attr('placeholder','Введите Email');
+    }, 5000);
     return false;
   }
 }
@@ -3189,7 +3217,7 @@ function OpenMenu() {
     }
   });
   // Закрытие меню
-  $('.dropside .dropside__label, .dropside__label .icon-cancel').on('click', function(event){
+  $('.dropside__label .icon-cancel').on('click', function(event){
     $('.dropside__content').removeClass('opened');
     $('.dropside__open').removeClass('opened');
     $('#sidebar').removeClass('opened');
@@ -3206,6 +3234,18 @@ function OpenMenu() {
       $(this).parents('.dropdown').addClass('opened');
       $('#overlay').addClass('opened transparent');
     }
+  });
+
+  // Открытие элементов
+  $('.dropside__label [data-open="catalog"]').on('click', function(event){
+    event.preventDefault();
+    $('.dropside__content[data-open="menu"]').removeClass('opened');
+    $('.dropside__content[data-open="catalog"]').addClass('opened');
+  });
+  $('.dropside__label [data-open="menu"]').on('click', function(event){
+    event.preventDefault();
+    $('.dropside__content[data-open="menu"]').addClass('opened');
+    $('.dropside__content[data-open="catalog"]').removeClass('opened');
   });
 
   // Открытие каталога с сохранением вложенности
