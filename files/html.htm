@@ -66,9 +66,8 @@
             <div class="menu__icon dropside__open" data-open="menu"><i class="icon-menu"></i></div>
             <div class="dropside__content" data-breakpoint="1199" data-open="menu">
               <div class="dropside__label">
-                <i class="icon-menu"></i>
-                <span data-open="menu">Меню</span>
-                <span data-open="catalog">Каталог</span>
+                <span class="active" data-open="menu"><i class="icon-menu"></i><span>Меню</span></span>
+                <span data-open="catalog"><span>Каталог</span></span>
                 <i class="icon-cancel"></i>
               </div>
               <nav class="mainnav" itemscope itemtype="https://schema.org/SiteNavigationElement">
@@ -81,8 +80,8 @@
                     {% ENDFOR %}
                   {% ENDFOR %}
                 </ul>
+                <ul class="overflowMenu"></ul>
               </nav>
-              <ul class="overflowMenu"></ul>
             </div>
           </div>
           <!-- Контакты -->
@@ -156,9 +155,8 @@
             <div class="catalog__icon button dropside__open" data-open="catalog"><span>Каталог товаров</span></div>
             <div class="dropside__content" data-open="catalog">
               <div class="dropside__label">
-                <i class="icon-menu"></i>
-                <span data-open="catalog">Каталог</span>
-                <span data-open="menu">Меню</span>
+                <span class="active" data-open="catalog"><i class="icon-menu"></i><span>Каталог</span></span>
+                <span data-open="menu"><span>Меню</span></span>
                 <i class="icon-cancel"></i>
               </div>
               <div class="catalog__items">

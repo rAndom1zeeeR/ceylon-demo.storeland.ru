@@ -277,7 +277,7 @@ header .inner {position: relative;}
 /* Логотип */
 .header__logo {width: 125px;order: 1;padding: 0 1rem;}
 /* Меню */
-.header__menu {position: relative;width: calc(100% - 125px - 180px - 350px);padding: 0 1rem;order: 2;}
+.header__menu {position: relative;width: calc(100% - 125px - 180px - 320px);padding: 0;order: 2;}
 header .mainnav__list {height: 40px;overflow: hidden;}
 .mainnav ul {display: flex;flex-wrap: wrap;align-items: center;margin: 0;padding: 0;list-style: none;}
 .mainnav ul li {display: flex;align-items: center;white-space: nowrap;}
@@ -289,6 +289,9 @@ header .overflowMenu.active {display: flex;}
 .header__menu .menu__icon {display: none;}
 .header__menu .dropside__label {display: none;}
 .header__menu .mainnav {max-width: 100%;}
+.header__menu .dropside__label {background: #fffcf9;padding: 0;}
+.header__menu .dropside__label > span {padding: 1rem 0.75rem;margin: 0;display: flex;align-items: center;}
+.header__menu .dropside__label > span:hover, .header__menu .dropside__label > span.active {background: #f2e3cc;}
 /* Контакты */
 .header__contacts {width: 180px;order: 3;}
 .header__contacts .contacts__phone {display: flex;align-items: center;justify-content: flex-end;}
@@ -296,7 +299,7 @@ header .overflowMenu.active {display: flex;}
 .header__contacts .contacts__phone span {color: #9cd93d;font-size: 1.125rem;font-weight: bold;font-family: 'Philosopher', sans-serif;}
 .header__contacts .feedback__click {display: flex;align-items: center;justify-content: flex-end;margin-top:0.5rem;font-size: 0.875rem;}
 /** Избранное и Сравнение **/
-.header__addto {width: 350px;padding-left: 2rem;order: 4;}
+.header__addto {width: 320px;padding-left: 2rem;order: 4;}
 .addto__links {display: flex;align-items: center;justify-content: flex-end;height: 50px;}
 .addto__links .addto__label {display: flex;align-items: center;padding: 0 0.625rem;}
 .addto__links .addto__label i {font-size: 30px;}
@@ -345,6 +348,9 @@ header .overflowMenu {display: block;}
 #catalog .catalog__item .open:before {content: '\e90f';}
 #catalog .catalog__item .catalog__link {display: block;padding: 0.5rem 20px;}
 #catalog .catalog__item .catalog__link.opened {color: #9cd93d;}
+#catalog .dropside__label {background: #fffcf9;padding: 0;}
+#catalog .dropside__label > span {padding: 1rem 0.75rem;margin: 0;display: flex;align-items: center;}
+#catalog .dropside__label > span:hover, #catalog .dropside__label > span.active {background: #f2e3cc;}
 @media all and (max-width: 767px) {
 }
 
@@ -1130,10 +1136,11 @@ section {margin: 3rem 0;}
 .dropside__label {display: flex;align-items: center;justify-content: flex-start;padding: 1rem;border-top: 1px solid #ccd2c2;border-bottom: 1px solid #ccd2c2;font-size: 1.375rem;text-transform: uppercase;font-family: 'Philosopher', sans-serif;cursor: pointer;}
 .dropside__label i {font-size: 30px;}
 .dropside__label i + span {margin-left: 1rem;}
-.dropside__label span + span {margin-left: 1.5rem;}
+.dropside__label span + span {margin-left: 1.5rem;display: none;}
 .dropside__label .icon-cancel {font-size: 1rem;right: 1rem;position: absolute;}
 .dropside__label .icon-cancel:hover {color: #9cd93d;}
 @media all and (max-width: 1199px) {
+.dropside__label span + span {display: inline-block;}
 .dropside__content[data-breakpoint="1199"] {display: block;opacity: 0;position: fixed;top: 0;left: -100%;max-width: 300px;width: 75%;height: 100vh;overflow-y: auto;background: #fff;z-index: 11;transition: all 0.3s ease;}
 .dropside__content[data-breakpoint="1199"].opened {opacity: 1;left: 0;}
 .dropside__content[data-breakpoint="1199"] .dropside__label {display: flex;}
