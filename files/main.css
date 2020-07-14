@@ -350,8 +350,10 @@ header .overflowMenu {display: block;}
 #catalog .catalog__item .catalog__link.opened {color: #9cd93d;}
 #catalog .dropside__label {background: #fffcf9;padding: 0;}
 #catalog .dropside__label > span {padding: 1rem 0.75rem;margin: 0;display: flex;align-items: center;}
+#catalog .dropside__label > span[data-open="menu"] {display: none}
+@media all and (max-width: 1199px) {
 #catalog .dropside__label > span:hover, #catalog .dropside__label > span.active {background: #f2e3cc;}
-@media all and (max-width: 767px) {
+#catalog .dropside__label > span[data-open="menu"] {display: block}
 }
 
 /** Поиск **/
