@@ -353,7 +353,7 @@ header .overflowMenu {display: block;}
 #catalog .dropside__label > span[data-open="menu"] {display: none}
 @media all and (max-width: 1199px) {
 #catalog .dropside__label > span:hover, #catalog .dropside__label > span.active {background: #f2e3cc;}
-#catalog .dropside__label > span[data-open="menu"] {display: block}
+#catalog .dropside__label > span[data-open="menu"] {display: block;}
 }
 
 /** Поиск **/
