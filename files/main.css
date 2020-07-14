@@ -1330,7 +1330,7 @@ section {margin: 3rem 0;}
 .CompareGoods__nav .navigation {width: 100px;display: -ms-flexbox;display: -webkit-flex;display: flex;-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;-ms-flex-align: center;-webkit-align-items: center;-webkit-box-align: center;align-items: center;-webkit-justify-content: space-between;justify-content: space-between;}
 .CompareGoods__nav .navigation > div {font-size: 1.5rem;position: relative;float: none;margin: 0;}
 .CompareGoods__nav .navigation > div:hover {border-color: #9cd93d;}
-.CompareGoods .price__old + .price__now {margin-left: 1rem;}
+.CompareGoods .price__old {margin-right: 1rem;}
 #toCompare {display: -ms-flexbox;display: -webkit-flex;display: flex;-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;-ms-flex-align: center;-webkit-align-items: center;-webkit-box-align: center;align-items: center;-webkit-justify-content: space-between;justify-content: space-between;position: fixed;bottom: 1rem;right: 1rem;z-index: 99;}
 #toCompare > div {font-size: 1.5rem;position: relative;float: none;margin: 0;border: 1px solid #ccd2c2;border-radius: 5px;width: 44px;height: 44px;line-height: 50px;text-align: center;background: #fff;margin-left: 1rem;}
 #toCompare > div:hover {border-color: #9cd93d;cursor: pointer}
@@ -1359,6 +1359,7 @@ section {margin: 3rem 0;}
 .CompareGoodsTableTbody .actions .price-box {width: calc(100% - 50px);padding: 0;text-align: left;}
 .CompareGoodsTableTbody .actions .price-box a {display: block;}
 .CompareGoodsTableTbody .actions .price-box .price__now {margin-right: 5px;}
+.CompareGoodsTableTbody .actions .add-notify {padding: 0 1.25rem;}
 .CompareGoodsTableTbody .owl-stage-outer {margin-right: -1px;}
 @media all and (max-width: 481px) {
 .CompareGoodsTableTbody .actions .price-box {width: 100%;margin-bottom: 1rem;}

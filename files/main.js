@@ -626,15 +626,10 @@ function goodspage() {
   // Переключение для Положительный и Отрицательный отзыв
   $('.generally label').on('click', function(event){
     event.preventDefault();
-    if ($(this).hasClass('active')) {
-      $(this).removeClass('active');
-      $('.generally input').attr('checked', false);
-    }else{
-      $('.generally label').removeClass('active');
-      $('.generally input').attr('checked', false);
-      $(this).addClass('active');
-      $(this).next('input').attr('checked', true);
-    }
+    $('.generally label').removeClass('active');
+    $('.generally input').attr('checked', false);
+    $(this).addClass('active');
+    $(this).next('input').attr('checked', true);
   });
   // Ссылка на отображение формы для добавление отзыва о товаре
   $('.opinion__add').on('click', function(event){
