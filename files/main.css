@@ -613,6 +613,8 @@ header .overflowMenu {display: block;}
 #mainbody .mainbody__left {width: 60%;}
 #mainbody .mainbody__right {width: 40%;}
 #mainbody .mainbody__right img {position: absolute;top: -10%;}
+#mainbody.catalog .mainbody__left {width: 100%;}
+#mainbody.catalog .mainbody__right {display: none;}
 @media all and (max-width: 1199px) {
 #mainbody {margin-top: 0;}
 #mainbody .inner {padding: 2rem;}

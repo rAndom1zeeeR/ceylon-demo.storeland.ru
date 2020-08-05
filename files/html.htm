@@ -195,7 +195,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- ГЛАВНАЯ СТРАНИЦА -->
     {% IF index_page %}
     <!-- Слайдшоу -->
@@ -556,7 +556,6 @@
           </div>
           {% ENDFOR %}
         </div>
-      </div>
     </section>
     {% ENDIF %}
     
@@ -1305,12 +1304,12 @@
     {% ENDIF %}
     
     <!-- Описание на Главной -->
-    <section id="mainbody">
+    <section id="mainbody" {% IF NESTED_CATEGORIES_LIST_LEVEL %}class="catalog"{% ENDIF %}>
       <div class="container">
         <div class="inner">
           <div class="mainbody__left">
             <div class="block__title">
-              <h1 class="title">{PAGE_TITLE}</h1>
+              <h1 class="title">{% IF NESTED_CATEGORIES_LIST_LEVEL %}Каталог товаров{% ELSE %}{PAGE_TITLE}{% ENDIF %}</h1>
             </div>
             {BODY}
           </div>
